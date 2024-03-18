@@ -1,0 +1,50 @@
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+  }
+
+.user-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .user-info-form .info-section, .info-section-2 {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 3rem;
+    width: 100%;
+    gap: 50px;
+  }
+
+  .cm-input {
+    display: flex;
+    padding: 1rem;
+    width: 70%;
+    border-radius: 10px;
+  }
+
+  .info-section-2{
+    opacity: 0.6;
+  }
+
+  .cm-button:hover{
+    background-color: rgb(123, 161, 255);
+    box-shadow: 3px 3px 5px black;
+    transform: scale(1.03);
+    transition: 0.3s;
+  }
+
+  .succ-button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  iframe, 
+  .map-container{
+    border-radius: 15px;
+  }
