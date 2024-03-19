@@ -1,11 +1,30 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import ProfileForm from '../components/Profile/ProfileForm';
+import { useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { getContact } from '../services/PostService';
+import { useEffect, useState } from 'react';
+import '../components/Profile/Profile.css';
 
-function Profile() {
+export default function Profile() {
+  const { id } = useParams();
+  const { data: user, isLoading, error } = useQuery(["getContact", id], () => getContact(1)); //API still doesnt have a number 1
+  const [fullname, setFullname] = useState("");
+
+  useEffect(() => {
+    if (user) {
+      setFullname(`${user.firstName} ${user.lastName}`);
+    }
+  }, [user]);
+
+  if (isLoading) return <h1>Page is loading...</h1>;
+  if (error) return <h1>{error.message}</h1>;
+
   return (
-    <ProfileForm />
+    <div className="content">
+      <h2>Profile</h2>
+      <h3>{fullname}</h3>
+      <ProfileForm user={user} />
+    </div>
   );
 }
-
-export default Profile;
