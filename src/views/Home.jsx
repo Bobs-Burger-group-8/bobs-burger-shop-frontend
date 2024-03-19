@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Card from '../components/Cards/Card';
+import Cart from './Cart';
 
 function Home() {
   const [favorites, setFavorites] = useState([]);
@@ -15,7 +16,7 @@ function Home() {
     }
   };
 
-  return (
+  return (<>
     <div className="home">
       <h1 className='home-header'>Popular Boggers!</h1>
       <div className="cards-horizontal">
@@ -37,6 +38,9 @@ function Home() {
         {/* Other Card components */}
       </div>
     </div>
+    <div>
+      <Cart/>
+    </div></>
   );
 }
 

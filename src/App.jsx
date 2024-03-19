@@ -18,7 +18,7 @@ const cartSample = [{
   price: 1,
   image: "",
   ingredients: [],
-  in_cart: 1
+  in_cart: 2
 }, {
   id: 1,
   name: "Bacon",
@@ -32,9 +32,15 @@ const cartSample = [{
 
 const App = () => {
   const [cart, updateCart] = useState(cartSample)
+
+  function handleCart(input){
+      updateCart(input);
+
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
-    <AppCtx.Provider value={{cart:cart, updateCart:updateCart}}>
+    <AppCtx.Provider value={{cart:cart, updateCart:handleCart}}>
     <Router>
         <Navbar />
         <Routes>

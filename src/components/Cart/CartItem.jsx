@@ -3,26 +3,32 @@ import { AppCtx } from "../../App"
 
 export default function CartItem({item}){
     const ctx = useContext(AppCtx)
-    const [cartItem, setItem] = useState(item)
     
     function increase(){
-        let updatedItem = cartItem;
+        let updatedItem = item;
         updatedItem.in_cart++ ;
-        setItem(updatedItem);
-        let cart = ctx.cart.map((element) => element.id !=cartItem? element: cartItem)
+        let cart = ctx.cart.map((element) => element.id !=item.id? element: item)
         ctx.updateCart(cart)
     }
     function decrease(){
-        let updatedItem = cartItem;
+        let updatedItem = item;
         updatedItem.in_cart-- ;
-        setItem(updatedItem);
-        let cart = ctx.cart.map((element) => element.id !=cartItem? element: cartItem)
+        let cart;
+
+        if(updatedItem.in_cart <= 0){
+            cart = ctx.cart.filter(element => element.id != item.id)
+
+        }else{
+            console.log(item)
+            cart = ctx.cart.map((element) => element.id !== item.id? element: item)
+            
+        }
+        
+        console.log(cart)
+        
         ctx.updateCart(cart)
     }
-    if(cartItem.in_cart <= 0 && cartItem.id!=undefined){
-        let cart = ctx.cart.filter(element => element.id!==cartItem.id)
-       ctx.updateCart(cart)
-    }
+  
 
     return(<><li>
         <img
@@ -30,9 +36,9 @@ export default function CartItem({item}){
           src=""
           alt="productimg"
         />
-        <p>{cartItem.name}</p>
+        <p>{item.name}</p>
         <button className="quantity-btn remove-btn center" onClick={decrease}>-</button>
-        <span className="quantity-text center">{cartItem.in_cart}</span>
+        <span className="quantity-text center">{item.in_cart}</span>
         <button className="quantity-btn add-btn center" onClick={increase}>+</button>
       </li></>)
 }*/
