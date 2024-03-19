@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProfileFormInput from './ProfileFormInput';
 import { useMutation } from 'react-query';
-import { putContact } from '../../services/PostService';
+import { putContact } from '../../services/ContactService.jsx';
 import './Profile.css';
 
 const ProfileForm = ({ user }) => {

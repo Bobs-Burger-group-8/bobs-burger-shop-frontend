@@ -1,0 +1,9 @@
+{
+    "id": 1,
+    "firstName": "Bob",
+    "lastName": "Burgerman",
+    "email": "bob@burger.com",
+    "phone": "12345678",
+    "street": "Burger Street 2",
+    "city": "Burger Town"
+  }
