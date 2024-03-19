@@ -1,4 +1,4 @@
-/*import CartItem from "./CartItem"
+import CartItem from "./CartItem"
 import { AppCtx } from "../../App"
 import { useContext } from "react"
 
@@ -13,4 +13,4 @@ const ctx = useContext(AppCtx)
             </ul>
         </div>
     )
-}*/
+}

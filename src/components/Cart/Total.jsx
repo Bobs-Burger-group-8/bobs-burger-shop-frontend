@@ -1,4 +1,4 @@
-/*import { useContext, useState } from "react"
+import { useContext, useState } from "react"
 import { AppCtx } from "../../App"
 
 export default function Total(){
@@ -24,4 +24,4 @@ export default function Total(){
       </div>
     </div>
     )
-}*/
+}

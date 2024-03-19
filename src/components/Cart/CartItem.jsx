@@ -1,4 +1,4 @@
-/*import { useContext, useState } from "react"
+import { useContext, useState } from "react"
 import { AppCtx } from "../../App"
 
 export default function CartItem({item}){
@@ -41,4 +41,4 @@ export default function CartItem({item}){
         <span className="quantity-text center">{item.in_cart}</span>
         <button className="quantity-btn add-btn center" onClick={increase}>+</button>
       </li></>)
-}*/
+}
