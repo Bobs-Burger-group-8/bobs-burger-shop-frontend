@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import ProfileFormInput from './ProfileFormInput';
-import { useMutation } from 'react-query';
-import { putContact } from '../../services/PostService';
 import './Profile.css';
+
+const BASE_API_URL = 'https://boolean-api-server.fly.dev/henrikrosenkilde/';
 
 const ProfileForm = ({ user }) => {
   const [form, setForm] = useState(user);
   const [updateSuccessful, setUpdateSuccessful] = useState(false);
-  const { mutateAsync: updateContactAsync } = useMutation('putContact', putContact);
+
+  useEffect(() => {
+    setForm(user);
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,30 +21,36 @@ const ProfileForm = ({ user }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUpdateSuccessful(false);
+  
+    // Check if required fields are empty
+    if (!form.firstName || !form.lastName || !form.email) {
+      alert('Please fill out all required fields.');
+      return;
+    }
     
     try {
-      const updatedForm = await updateContactAsync(form);
-      setForm(updatedForm);
+      const response = await axios.put(BASE_API_URL + 'contact/1', form);
+      setForm(response.data);
       setUpdateSuccessful(true);
-      // Reset updateSuccessful state after 2 seconds
-      setTimeout(() => {
-        setUpdateSuccessful(false);
-      }, 2000); //2 seconds
-    } 
-      catch (error) {
+      
+      // Reload the webpage after successful update
+      window.location.reload();
+    } catch (error) {
       console.error('Error updating contact:', error);
       setUpdateSuccessful(false);
     }
   };
   
+  
 
   return (
     <form className="user-info-form" onSubmit={handleSubmit}>
-      <ProfileFormInput name="First Name" value={form.firstName} onChange={handleChange} />
-      <ProfileFormInput name="Last Name" value={form.lastName} onChange={handleChange} />
-      <ProfileFormInput name="Email" value={form.email} onChange={handleChange} />
+      <ProfileFormInput name="First Name" value={form.firstName} onChange={handleChange} required />
+      <ProfileFormInput name="Last Name" value={form.lastName} onChange={handleChange} required />
+      <ProfileFormInput name="Email" value={form.email} onChange={handleChange} required />
       <ProfileFormInput name="Street" value={form.street} onChange={handleChange} />
       <ProfileFormInput name="City" value={form.city} onChange={handleChange} />
+      {/*<ProfileFormInput name="Phone" value={form.phone} onChange={handleChange} />*/}
 
       <div className="succ-button-container">
         {updateSuccessful && (

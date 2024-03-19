@@ -17,6 +17,7 @@ export default function Total(){
       <div className="total-section">
       <div>
         <h3>Total</h3>
+        <hr />
       </div>
 
       <div>
