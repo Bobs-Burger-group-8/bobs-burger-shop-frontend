@@ -1,8 +1,7 @@
-import React from 'react';
 import ProfileForm from '../components/Profile/ProfileForm';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { getContact } from '../services/PostService';
+import { getContact } from '../services/ContactService.jsx';
 import { useEffect, useState } from 'react';
 import '../components/Profile/Profile.css';
 

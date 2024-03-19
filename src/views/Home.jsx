@@ -1,11 +1,28 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '../components/Cards/Card';
+
+import { getAllProducts } from '../services/ProductService';
 import Cart from './Checkout';
 import { Link } from 'react-router-dom';
 
+
 function Home() {
   const [favorites, setFavorites] = useState([]);
+  const [products, setProducts] = useState([])
+  const[isLoading, setLoadingStatus] = useState(true)
+
+  
+
+  
+  const get = async ()=>{
+    let response =  await getAllProducts()
+    setProducts(response)
+  }
+
+  if (products[0] == undefined)get()
+
+  
 
   const toggleFavorite = (title) => {
     if (favorites.includes(title)) {

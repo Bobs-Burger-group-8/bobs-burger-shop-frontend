@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProfileFormInput from './ProfileFormInput';
+
+import { useMutation } from 'react-query';
+import { putContact } from '../../services/ContactService.jsx';
+
 import './Profile.css';
 
 const BASE_API_URL = 'https://boolean-api-server.fly.dev/henrikrosenkilde/';
