@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import Card from '../components/Cards/Card';
-import Cart from './Cart';
+
 import { getAllProducts } from '../services/ProductService';
+import Cart from './Checkout';
+import { Link } from 'react-router-dom';
 
 
 function Home() {
@@ -32,31 +34,23 @@ function Home() {
     }
   };
 
-  return (<>
+  return (
     <div className="home">
       <h1 className='home-header'>Popular Boggers!</h1>
-      <div className="cards-horizontal">
-        <Card title="Classic Burger" description="The all-time favorite classic burger with juicy beef patty, lettuce, tomato, and cheese." onToggleFavorite={toggleFavorite} />
-        <Card title="Classic Burger" description="The all-time favorite classic burger with juicy beef patty, lettuce, tomato, and cheese." onToggleFavorite={toggleFavorite} />
-        <Card title="Classic Burger" description="The all-time favorite classic burger with juicy beef patty, lettuce, tomato, and cheese." onToggleFavorite={toggleFavorite} />
-        {/* Other Card components */}
-      </div>
-      <div className="cards-horizontal">
-        <Card title="Classic Burger" description="The all-time favorite classic burger with juicy beef patty, lettuce, tomato, and cheese." onToggleFavorite={toggleFavorite} />
-        <Card title="Classic Burger" description="The all-time favorite classic burger with juicy beef patty, lettuce, tomato, and cheese." onToggleFavorite={toggleFavorite} />
-        <Card title="Classic Burger" description="The all-time favorite classic burger with juicy beef patty, lettuce, tomato, and cheese." onToggleFavorite={toggleFavorite} />
-        {/* Other Card components */}
-      </div>
-      <div className="cards-horizontal">
-        <Card title="Classic Burger" description="The all-time favorite classic burger with juicy beef patty, lettuce, tomato, and cheese." onToggleFavorite={toggleFavorite} />
-        <Card title="Classic Burger" description="The all-time favorite classic burger with juicy beef patty, lettuce, tomato, and cheese." onToggleFavorite={toggleFavorite} />
-        <Card title="Classic Burger" description="The all-time favorite classic burger with juicy beef patty, lettuce, tomato, and cheese." onToggleFavorite={toggleFavorite} />
-        {/* Other Card components */}
-      </div>
+      <div className="content-container">
+        <div className="cards-horizontal">
+          <Card title="Classic Burger" description="The all-time favorite classic burger with juicy beef patty, lettuce, tomato, and cheese." onToggleFavorite={toggleFavorite} />
+          <Card title="Classic Burger" description="The all-time favorite classic burger with juicy beef patty, lettuce, tomato, and cheese." onToggleFavorite={toggleFavorite} />
+          <Card title="Classic Burger" description="The all-time favorite classic burger with juicy beef patty, lettuce, tomato, and cheese." onToggleFavorite={toggleFavorite} />
+        </div>
+        <div className='cart-container'>
+          <Cart />
+          <div className='checkout-container'>
+            <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
+          </div>
+        </div>
     </div>
-    <div>
-      <Cart/>
-    </div></>
+  </div>
   );
 }
 

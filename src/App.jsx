@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './views/Home.jsx';
 import Profile from './views/Profile.jsx';
 import Favourites from './views/Favourites.jsx';
-import Cart from './views/Cart.jsx';
+import Checkout from './views/Checkout.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -47,7 +47,7 @@ const App = () => {
           <Route path="/" element={<Home />} /> 
           <Route path="/profile" element={<Profile />} />
           <Route path="/favourites" element={<Favourites />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </Router>
       </AppCtx.Provider>

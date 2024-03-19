@@ -10,6 +10,7 @@ export default function ProfileFormInput({
   let result = name.replace(/\s/g, "");
   result = result[0].toLowerCase() + result.slice(1);
 
+  /* -- IF we want to add profile images
   if (name.toLowerCase() === "profile image") {
     return (
       <div>
@@ -20,6 +21,7 @@ export default function ProfileFormInput({
       </div>
     );
   }
+  */
 
   return (
     <>

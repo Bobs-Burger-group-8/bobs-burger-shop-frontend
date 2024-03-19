@@ -21,7 +21,7 @@ export default function Profile() {
 
   return (
     <div className="content">
-      <h2>Profile</h2>
+      <h2>Bobber Eater</h2>
       <h3>{fullname}</h3>
       <ProfileForm user={user} />
     </div>
