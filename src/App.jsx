@@ -10,6 +10,7 @@ import LoginForm from './components/Login/LoginForm.jsx';
 import RegisterForm from './components/Register/RegisterForm.jsx';
 import Registered from './components/Register/Registered.jsx';
 import Logout from './components/Logout/Logout.jsx';
+import { getFavourites, getFavouritesByUserId, removeFavourite, saveNewFavourite } from './services/FavouriteService.jsx';
 
 const queryClient = new QueryClient();
 
@@ -20,26 +21,69 @@ const App = () => {
   const [cart, setCart] = useState([])
   const [favorites, setFavorites] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
+  const [products, setProducts] = useState([])
+  let userId = localStorage.getItem("userId")
 
+
+ let cartFromLocal = localStorage.getItem('cart');
+  
   useEffect(() => {
-    if(localStorage.getItem("userId") !== null) {
+    if(localStorage.getItem("userId") !== null && loggedIn==false) {
       setLoggedIn(true)
     }
     if(cart[0] == undefined && cartFromLocal!==null){
       setCart(JSON.parse(localStorage.getItem('cart')))
     }
-  }, [])
-
-  let cartFromLocal = localStorage.getItem('cart');
-  
-  const toggleFavorite = (item) => {
-    if (favorites.includes(item)) {
-      setFavorites(favorites.filter(element => element.productId !== item.id));
-    } else {
-      setFavorites([...favorites, item]);
+    if(favorites[0] === undefined){
+      loadFavourites()
     }
-    console.log(favorites)
+  }, [loggedIn])
+
+ 
+  
+  const toggleFavorite = async (item) => {
+    if(loggedIn==false){
+      alert("Log in to save new favourites")
+    }else{
+
+    try{ 
+      
+      let favId = -1;
+      
+      for(let i = 0; i<favorites.length; i++){
+        if((favorites[i].userId === userId) && ((favorites[i].productId === item.id))){
+         favId = favorites[i].id;
+        }
+      }
+
+      console.log(favId)
+      if (favId > 0) {
+          let response = await removeFavourite(favId)
+       
+          let updateArr = favorites.filter(element => element.id !== response.id);
+          setFavorites(updateArr)
+        
+      } else {    
+          let response = await saveNewFavourite(item.id)
+          
+            setFavorites([...favorites,  await response ]);
+    }}
+    catch(error){
+      console.log(error)
+      
+     }
+      
+    }
+    console.log('done')
   };
+
+  const loadFavourites = async ()=>{
+    let response =  await getFavouritesByUserId()
+    if(response[0] !== undefined){
+      setFavorites(response)
+
+     }
+  }
 
   function updateCart(input){
     setCart(input)
@@ -57,7 +101,7 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-    <AppCtx.Provider value={{cart:cart, updateCart:updateCart, favorites, onToggleFavorite:toggleFavorite, emptyCart:emptyCart}}>
+    <AppCtx.Provider value={{cart:cart, updateCart:updateCart, favorites, onToggleFavorite:toggleFavorite, emptyCart:emptyCart, products:products, allFavs:favorites, setProducts:setProducts}}>
       <LoggedInCtx.Provider value={{loggedIn: loggedIn, setLoggedIn: setLoggedIn}}>
     <Router>
         <Navbar />

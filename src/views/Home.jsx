@@ -14,39 +14,29 @@ import Favourites from './Favourites';
 
 function Home() {
   const [favorites, setFavorites] = useState([]);
-  const [products, setProducts] = useState([])
+  //const [products, setProducts] = useState([])
   const [cart, setCart] = useState([])
   let ctx = useContext(AppCtx)
  
 
-  
+ 
+  //if (products[0] == undefined){loadProducts()}
   const loadProducts = async ()=>{
     let response =  await getAllProducts()
-    setProducts(response)
-    let favs = response.slice(0,4)//await getFavourites();
-    console.log(favs)
-    if(favs[0] !== null){
-    setFavorites(favs)}else{
-      let arr = await response.slice(0,4)
-      setFavorites(arr)
-      console.log(arr)
-    }
+    ctx.setProducts(response)
+  
   }
-  if (products[0] == undefined){ loadProducts()}
-
-  console.log(favorites)
-
-
+ if(ctx.products[0] == undefined) loadProducts();
+ // if (favorites[0] == undefined){ loadFavourites()}
 
   return (
     <div className="home">
       <h1 className='home-header'>Popular Boggers!</h1>
       <div className="content-container">
         <div className="cards-horizontal">
-        <CardList products={products} updateCart={(item)=>setCart([...cart,item])}/>
+        <CardList products={ctx.products} updateCart={(item)=>setCart([...cart,item])}/>
         </div>
         <div className="cards-horizontal">
-        <Favourites products={favorites}/>
         </div>
         <div className='cart-container'>
           <Cart refreshPage={(input)=>setCart(input)}></Cart>
@@ -54,9 +44,13 @@ function Home() {
             <button onClick={ctx.emptyCart} className='empty-cart-btn'>Empty cart</button>
             <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
           </div>
-        </div>
-        
-    </div>
+       
+        </div></div>
+        <div className="content-container">
+        <div className="cards-horizontal">
+        <Favourites/>
+        </div></div>
+    
   </div>
   );
 }
