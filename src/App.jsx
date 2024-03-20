@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './views/Home.jsx';
 import Profile from './views/Profile.jsx';
@@ -29,6 +29,12 @@ const App = () => {
     "street": "Burger Street 2",
     "city": "Burger Town"
   })
+
+  useEffect(() => {
+    if(localStorage.getItem("userId") !== null) {
+      setLoggedIn(true)
+    }
+  }, [])
 
   let cartFromLocal = localStorage.getItem('cart');
   if(cart[0] == undefined && cartFromLocal!==null){
