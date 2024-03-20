@@ -20,27 +20,17 @@ const App = () => {
   const [cart, setCart] = useState([])
   const [favorites, setFavorites] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
-  const [defaultUser, setDefaultUser] = useState({
-    "id": 1,
-    "firstName": "Bob",
-    "lastName": "Burgerman",
-    "email": "bob@burger.com",
-    "phone": "12345678",
-    "street": "Burger Street 2",
-    "city": "Burger Town"
-  })
 
   useEffect(() => {
     if(localStorage.getItem("userId") !== null) {
       setLoggedIn(true)
     }
+    if(cart[0] == undefined && cartFromLocal!==null){
+      setCart(JSON.parse(localStorage.getItem('cart')))
+    }
   }, [])
 
   let cartFromLocal = localStorage.getItem('cart');
-  if(cart[0] == undefined && cartFromLocal!==null){
-    cartFromLocal = JSON.parse(localStorage.getItem('cart'));
-    setCart(cartFromLocal)
-  }
   
   const toggleFavorite = (item) => {
     if (favorites.includes(item)) {
@@ -53,7 +43,11 @@ const App = () => {
 
   function updateCart(input){
     setCart(input)
-    localStorage.setItem('cart',JSON.stringify(cart))
+    if (input.length === 0) {
+      localStorage.removeItem('cart')
+    } else {
+      localStorage.setItem('cart',JSON.stringify(cart))
+    }
   }
 
   function emptyCart(){

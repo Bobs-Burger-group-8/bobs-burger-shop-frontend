@@ -16,16 +16,14 @@ export default function CartItem({item, refreshPage}){
         let cart;
 
         if(updatedItem.in_cart <= 0){
-            cart = ctx.cart.filter(element => element.id != item.id)
+            cart = ctx.cart.filter(element => element.id != updatedItem.id)
 
         }else{
-            console.log(item)
-            cart = ctx.cart.map((element) => element.id !== item.id? element: item)
+            cart = ctx.cart.map((element) => element.id !== item.id ? element: updatedItem)
             
         }
-               
+        console.log(cart)
         ctx.updateCart(cart)
-        refreshPage(cart)
     }
 
     return(<><li>
