@@ -1,22 +1,28 @@
-/* eslint-disable no-unused-vars */
-import React, { useContext, useEffect } from 'react'
-import CartItemList from '../components/Cart/CartItemList'
-import '../components/Cart/Cart.css'
-import Total from '../components/Cart/Total'
-import { AppCtx } from '../App'
+import { useState } from 'react';
+import Receipt from '../components/Receipt/Receipt';
+import ReceiptItemList from '../components/Receipt/ReceiptItemList';
+import CartItemList from '../components/Cart/CartItemList';
+import Total from '../components/Cart/Total';
 
-function Checkout() {
-  let ctx = useContext(AppCtx)
-  
-  return (
-    <>
-      <div id="cart" className='container'>
-        <h2>Your Bobs bagger:</h2>
-        <CartItemList/>
-        <Total/>
-      </div>
-    </>
-  )
+export default function Checkout() {
+    const [showReceipt, setShowReceipt] = useState(false);
+
+    const toggleReceipt = () => {
+        setShowReceipt(!showReceipt);
+    };
+
+    return (
+        <div>
+            <div>
+                {!showReceipt && (
+                    <>
+                        <CartItemList />
+                        <Total />
+                        <button onClick={toggleReceipt}>Place Order</button>
+                    </>
+                )}
+            </div>
+            {showReceipt && <Receipt />}
+        </div>
+    );
 }
-
-export default Checkout

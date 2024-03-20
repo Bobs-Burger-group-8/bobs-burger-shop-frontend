@@ -1,16 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from 'react';
-import Card from '../components/Cards/Card';
-
 import { getAllProducts } from '../services/ProductService';
-import Cart from './Checkout';
+import Cart from '../components/Cart/Cart';
 import { Link } from 'react-router-dom';
 import CardList from '../components/Cards/CardList';
 import { getFavourites } from '../services/FavouriteService';
 import { App, AppCtx } from '../App';
 import CartItemList from '../components/Cart/CartItemList';
 import Total from '../components/Cart/Total';
-import Checkout from './Checkout';
 
 
 function Home() {
@@ -50,7 +47,7 @@ function Home() {
         <CardList products={products} updateCart={(item)=>setCart([...cart,item])}/>
         </div>
         <div className='cart-container'>
-          <Cart />
+          <Cart></Cart>
           <div className='checkout-container'>
             <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
           </div>

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './views/Home.jsx';
 import Profile from './views/Profile.jsx';
@@ -6,6 +6,9 @@ import Favourites from './views/Favourites.jsx';
 import Checkout from './views/Checkout.jsx';
 import Navbar from './components/Navbar/Navbar.jsx';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import LoginForm from './components/Login/LoginForm.jsx';
+import RegisterForm from './components/Register/RegisterForm.jsx';
+import Registered from './components/Register/Registered.jsx';
 
 const queryClient = new QueryClient();
 
@@ -43,7 +46,10 @@ const App = () => {
     <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home/>} /> 
+          <Route path="/" element={<Home />} /> 
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/registerd" element={<Registered />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/favourites" element={<Favourites />} />
           <Route path="/checkout" element={<Checkout />} />

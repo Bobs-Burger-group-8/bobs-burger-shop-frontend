@@ -28,7 +28,6 @@ export default function CartItem({item}){
         
         ctx.updateCart(cart)
     }
-  
 
     return(<><li>
         <img

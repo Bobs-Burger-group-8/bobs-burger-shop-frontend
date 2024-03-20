@@ -15,6 +15,9 @@ function Navbar() {
       </div>
       <ul className="navbar-links">
         <li>
+          <Link to="/login">Login/Register</Link>
+        </li>
+        <li>
           <Link to="/favourites">Favourites</Link>
         </li>
         <li>
