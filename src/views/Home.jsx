@@ -9,43 +9,34 @@ import { App, AppCtx } from '../App';
 import CartItemList from '../components/Cart/CartItemList';
 import Total from '../components/Cart/Total';
 import '../components/Cart/Cart.css'
+import Favourites from './Favourites';
 
 
 function Home() {
   const [favorites, setFavorites] = useState([]);
-  const [products, setProducts] = useState([])
+  //const [products, setProducts] = useState([])
   const [cart, setCart] = useState([])
   let ctx = useContext(AppCtx)
  
 
-  
+ 
+  //if (products[0] == undefined){loadProducts()}
   const loadProducts = async ()=>{
     let response =  await getAllProducts()
-    setProducts(response)
-    let favs = await getFavourites();
-    setFavorites(favs)
-  }
-  if (products[0] == undefined){ loadProducts()}
-
+    ctx.setProducts(response)
   
-
-  const toggleFavorite = (item) => {
-    if (favorites.includes(item)) {
-      setFavorites(favorites.filter(element => element.id !== item.id));
-    } else {
-      setFavorites([...favorites, item]);
-    }
-    console.log(favorites)
-  };
-
-
+  }
+ if(ctx.products[0] == undefined) loadProducts();
+ // if (favorites[0] == undefined){ loadFavourites()}
 
   return (
     <div className="home">
       <h1 className='home-header'>Popular Boggers!</h1>
       <div className="content-container">
         <div className="cards-horizontal">
-        <CardList products={products} updateCart={(item)=>setCart([...cart,item])}/>
+        <CardList products={ctx.products} updateCart={(item)=>setCart([...cart,item])}/>
+        </div>
+        <div className="cards-horizontal">
         </div>
         <div className='cart-container'>
           <Cart refreshPage={(input)=>setCart(input)}></Cart>
@@ -53,8 +44,13 @@ function Home() {
             <button onClick={ctx.emptyCart} className='empty-cart-btn'>Empty cart</button>
             <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
           </div>
-        </div>
-    </div>
+       
+        </div></div>
+        <div className="content-container">
+        <div className="cards-horizontal">
+        <Favourites/>
+        </div></div>
+    
   </div>
   );
 }

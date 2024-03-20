@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import { FaHeart } from 'react-icons/fa'; // Import heart icon from react-icons library
 import "./Cards.css";
 import { useContext } from 'react';
@@ -9,6 +9,8 @@ import { AppCtx } from '../../App';
 
 function Card({product, updateCart}) {
 let ctx = useContext(AppCtx)
+const [heartColor, setColor] = useState('black')
+
 
 function handleClick(){
   let cartItemIndex = ctx.cart.findIndex(e=>e.id== product.id)
@@ -24,6 +26,15 @@ function handleClick(){
   updateCart(ctx.cart)
 }
 
+function updateFavs(){
+   ctx.onToggleFavorite(product)
+  
+   if(heartColor=='black'){ setColor('red')
+  }else if(heartColor=='red'){
+    setColor('black')
+  }
+
+}
 
 
   return (
@@ -32,8 +43,8 @@ function handleClick(){
         <h2 className="card-title">{product.name? product.name:'missing name'}</h2>
         <div className="card-image-container">
           <img className="card-image" src={product.image} alt={product.name} />
-          <button className="favorite-button" onClick={() => ctx.onToggleFavorite(product)}>
-            <FaHeart />
+          <button className="favorite-button" onClick={() => updateFavs()}>
+            <FaHeart style={{color: heartColor}} />
           </button>
           <hr />
         </div>

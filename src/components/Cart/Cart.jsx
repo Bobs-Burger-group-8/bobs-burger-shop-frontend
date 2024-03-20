@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import CartItemList from './CartItemList'
 import Total from './Total'
 import './Cart.css'
