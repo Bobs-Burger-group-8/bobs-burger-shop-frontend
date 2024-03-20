@@ -9,7 +9,6 @@ export default function Total(){
         for(let i =0; i<ctx.cart.length; i++){
             sum = sum + (Number.parseFloat(ctx.cart[i].price)*ctx.cart[i].in_cart)
             
-        console.log(sum)
     }
     
     }

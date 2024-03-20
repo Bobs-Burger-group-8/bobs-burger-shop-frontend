@@ -3,7 +3,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { FaHeart } from 'react-icons/fa'; // Import heart icon from react-icons library
-import burgerImage from '../../assets/burger1.png';
 import "./Cards.css";
 import { useContext } from 'react';
 import { AppCtx } from '../../App';

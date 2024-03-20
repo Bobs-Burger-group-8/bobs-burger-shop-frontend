@@ -9,18 +9,35 @@
   }
   
   .cart-container {
-    margin-left: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 800px;
   }
   
   .checkout-container {
     display: flex;
-    justify-content: center;
+    justify-content: end;
   }
   
-  
+  .add-to-cart{
+    display: flex;
+  justify-content: center; /* Horizontally center the button */
+  align-items: center; /* Vertically center the button */
+  text-align: center;
+  background-color: #007bff;
+  color: #fff;
+  border: none; /* Remove border */
+  margin-left: 37px;
+  padding: 10px 20px; /* Add padding */
+  border-radius: 5px; /* Add border radius */
+  cursor: pointer; /* Add cursor pointer */
+  transition: opacity 0.3s ease; /* Add transition effect */
+  }
+
+  .add-to-cart:hover{
+    opacity: 0.8;
+  }
 
   .checkout-btn {
     list-style: none;
@@ -44,26 +61,32 @@
   
   /* Styles for individual card */
   .card {
-    width: 200px;
-    max-height: 425px; /* Set maximum height for the card */
+    width: 550px;
+    height: 330px; /* Set maximum height for the card */
     border: 1px solid #ccc;
     border-radius: 15px;
     margin: 10px;
     padding: 10px;
     position: relative;
     flex-grow: 1;
-    flex-basis: 200px; /* Set initial size for cards */
+    flex-basis: 180px; /* Set initial size for cards */
+  }
+
+  .card:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   }
   
   /* Styles for card image container */
   .card-image-container {
-    position: relative;
+    height: 120px;
+    overflow: hidden;
   }
   
   /* Styles for card image */
   .card-image {
     width: 100%;
-    height: auto;
+    height: 80%;
+    object-fit: cover;
   }
 
   .favorite-button {
@@ -72,7 +95,7 @@
     cursor: pointer;
     font-size: 24px;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 70px;
+    left: 150px;
   }
   
