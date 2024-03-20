@@ -25,3 +25,8 @@ html, body {
     text-align: center;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
+
+.receipt-item-image{
+    height: 100px;
+    width: 110px;
+}

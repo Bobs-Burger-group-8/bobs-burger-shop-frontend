@@ -3,14 +3,32 @@ import Receipt from '../components/Receipt/Receipt';
 import CartItemList from '../components/Cart/CartItemList';
 import Total from '../components/Cart/Total';
 import { AppCtx } from '../App';
+import { addOrder } from '../services/OrderService';
 
 export default function Checkout() {
     const [showReceipt, setShowReceipt] = useState(false);
     let ctx = useContext(AppCtx)
 
-    const toggleReceipt = () => {
-        setShowReceipt(!showReceipt);
+    const toggleReceipt = async () => {
+        let total = 0;
+        ctx.cart.forEach(item => {
+            total += (item.price * item.in_cart);
+        });
+    
+        const order = {
+            userId: localStorage.getItem("userId"),
+            productIds: ctx.cart.map(item => item.id),
+            total: total.toFixed(2)
+        };
+    
+        try {
+            await addOrder(order);
+            setShowReceipt(!showReceipt);
+        } catch (error) {
+            console.error("Error placing order:", error);
+        }
     };
+    
 
     return (
         <div>
