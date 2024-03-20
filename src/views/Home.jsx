@@ -10,17 +10,16 @@ import { getFavourites } from '../services/FavouriteService';
 import { App, AppCtx } from '../App';
 import CartItemList from '../components/Cart/CartItemList';
 import Total from '../components/Cart/Total';
+import Checkout from './Checkout';
 
 
 function Home() {
   const [favorites, setFavorites] = useState([]);
   const [products, setProducts] = useState([])
-  const[isLoading, setLoadingStatus] = useState(true)
+  const [cart, setCart] = useState([])
   let ctx = useContext(AppCtx)
-
-  if(ctx.cart) {let cart = <Cart/>}
  
-console.log(ctx.cart)
+
   
   const loadProducts = async ()=>{
     let response =  await getAllProducts()
@@ -41,12 +40,14 @@ console.log(ctx.cart)
     console.log(favorites)
   };
 
+
+
   return (
     <div className="home">
       <h1 className='home-header'>Popular Boggers!</h1>
       <div className="content-container">
         <div className="cards-horizontal">
-        <CardList products={products}/>
+        <CardList products={products} updateCart={(item)=>setCart([...cart,item])}/>
         </div>
         <div className='cart-container'>
           <Cart />

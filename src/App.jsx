@@ -28,9 +28,9 @@ const App = () => {
     if (favorites.includes(item)) {
       setFavorites(favorites.filter(element => element.productId !== item.id));
     } else {
-      let favorite = 
       setFavorites([...favorites, item]);
     }
+    console.log(favorites)
   };
 
   function updateCart(input){
@@ -39,11 +39,11 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-    <AppCtx.Provider value={{cart:cart, updateCart:updateCart, favorites, toggleFavorite}}>
+    <AppCtx.Provider value={{cart:cart, updateCart:updateCart, favorites, onToggleFavorite:toggleFavorite}}>
     <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} /> 
+          <Route path="/" element={<Home/>} /> 
           <Route path="/profile" element={<Profile />} />
           <Route path="/favourites" element={<Favourites />} />
           <Route path="/checkout" element={<Checkout />} />
