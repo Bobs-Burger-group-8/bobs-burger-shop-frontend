@@ -10,7 +10,6 @@ function Cart({refreshPage}) {
     <>
         <CartItemList refreshPage={refreshPage}/>
         <Total />
-        <button onClick={ctx.emptyCart}>Empty cart</button>
     </>
   )
 }
