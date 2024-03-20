@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import "./Navbar.css"
 import Counter from '../Cart/Counter';
+import { TokenCtx } from '../../App';
 
 function Navbar() {
+  const {token, setToken} = useContext(TokenCtx)
   return (
     <nav className="navbar">
       <div className="navbar-logo">
@@ -14,12 +16,20 @@ function Navbar() {
         </Link>
       </div>
       <ul className="navbar-links">
+        {!token &&
         <li>
           <Link to="/login">Login/Register</Link>
         </li>
+        }
+        {token ?
         <li>
           <Link to="/favourites">Favourites</Link>
         </li>
+        :
+        <li>
+        <Link to="/login">Favourites</Link>
+      </li>
+        }
         <li>
           <Link to="/checkout">Checkout<Counter/></Link>
         </li>

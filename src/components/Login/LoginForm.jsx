@@ -27,7 +27,9 @@ function LoginForm() {
       const authUser = {email: form.email, password: form.password}
       try {
           const response = await axios.post('https://localhost:7141/auth/login', authUser)
-          console.log(response.data)
+          localStorage.setItem("token", response.data.token)
+          localStorage.setItem("userId", response.data.id)
+          navigate("/")
       } catch(e) {
           if (e.response.data.length > 1) {
               alert(e.response.data[1].description)
