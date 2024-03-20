@@ -3,6 +3,7 @@ import FormInput from './FormInput'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { LoggedInCtx } from '../../App';
+import './LoginForm.css';
 
 function LoginForm() {
     const {loggedIn, setLoggedIn} = useContext(LoggedInCtx)
@@ -45,20 +46,20 @@ function LoginForm() {
     };
 
   return (
-    <div>
+    <div className="login-container">
       <h1>Login</h1>
-        <form className="user-info-form" onSubmit={handleSubmit}>
-            <FormInput type="email" name="Email" value={form.email} onChange={handleChange} required />
-            <FormInput className="password" type={'password'} name="Password" value={form.password} onChange={handleChange} required />
-            <div className="succ-button-container">
-            <button type="submit" className="cm-button" style={{ height: '50px' }}>
-              Login
-            </button>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <FormInput type="email" name="Email" value={form.email} onChange={handleChange} required />
+        <FormInput className="input-field" type={'password'} name="Password" value={form.password} onChange={handleChange} required />
+        <div className="button-container">
+          <button type="submit" className="submit-button">
+            Login
+          </button>
+        </div>
+      </form>
+      <p>Don't have a user? Register <Link to="/register">here.</Link></p>
     </div>
-        </form>
-        <p>Don't have a user? Register <Link to="/register">here.</Link></p>
-    </div>
-  )
+  );
 }
 
 export default LoginForm

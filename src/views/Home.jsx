@@ -8,6 +8,7 @@ import { getFavourites } from '../services/FavouriteService';
 import { App, AppCtx } from '../App';
 import CartItemList from '../components/Cart/CartItemList';
 import Total from '../components/Cart/Total';
+import '../components/Cart/Cart.css'
 
 
 function Home() {
@@ -49,6 +50,7 @@ function Home() {
         <div className='cart-container'>
           <Cart refreshPage={(input)=>setCart(input)}></Cart>
           <div className='checkout-container'>
+            <button onClick={ctx.emptyCart} className='empty-cart-btn'>Empty cart</button>
             <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
           </div>
         </div>

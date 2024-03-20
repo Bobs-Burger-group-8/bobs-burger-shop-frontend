@@ -45,26 +45,26 @@ function RegisterForm() {
         
       };
 
-  return (
-    <div>
-      <h1>Register</h1>
-    <form className="user-info-form" onSubmit={handleSubmit}>
-    <FormInput type="text" name="First Name" value={form.firstName} onChange={handleChange} required />
-    <FormInput type="text" name="Last Name" value={form.lastName} onChange={handleChange} required />
-    <FormInput type="email" name="Email" value={form.email} onChange={handleChange} required />
-    <FormInput className="password" type={'password'} name="Password" value={form.password} onChange={handleChange} required />
-    <FormInput type="text" name="Street" value={form.street} onChange={handleChange} />
-    <FormInput type="text" name="City" value={form.city} onChange={handleChange} />
-    <FormInput type="phone" name="Phone" value={form.phone} onChange={handleChange} />
+      return (
+        <div className="register-form-container">
+            <h1>Register</h1>
+            <form className="user-info-form" onSubmit={handleSubmit}>
+                <FormInput type="text" name="First Name" value={form.firstName} onChange={handleChange} required />
+                <FormInput type="text" name="Last Name" value={form.lastName} onChange={handleChange} required />
+                <FormInput type="email" name="Email" value={form.email} onChange={handleChange} required />
+                <FormInput className="input-field" type={'password'} name="Password" value={form.password} onChange={handleChange} required />
+                <FormInput type="text" name="Street" value={form.street} onChange={handleChange} />
+                <FormInput type="text" name="City" value={form.city} onChange={handleChange} />
+                <FormInput type="phone" name="Phone" value={form.phone} onChange={handleChange} />
 
-    <div className="succ-button-container">
-      <button type="submit" className="cm-button" style={{ height: '50px' }}>
-        Register
-      </button>
-    </div>
-  </form>
-  </div>
-  )
+                <div className="button-container">
+                    <button type="submit" className="submit-button">
+                        Register
+                    </button>
+                </div>
+            </form>
+        </div>
+    )
 }
 
 export default RegisterForm
