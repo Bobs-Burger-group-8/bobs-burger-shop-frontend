@@ -4,26 +4,30 @@ import { useQuery } from 'react-query';
 import { getContact } from '../services/ContactService.jsx';
 import { useEffect, useState } from 'react';
 import '../components/Profile/Profile.css';
+import axios from 'axios';
 
 export default function Profile() {
-  const { id } = useParams();
-  const { data: user, isLoading, error } = useQuery(["getContact", id], () => getContact(1)); //API still doesnt have a number 1
-  const [fullname, setFullname] = useState("");
+  const [id, setId] = useState(localStorage.getItem("userId"))
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  async function getUser() {
+    await axios.get("https://localhost:7141/users/" + id).then(res => setUser(res.data))
+    setLoading(false)
+  }
 
   useEffect(() => {
-    if (user) {
-      setFullname(`${user.firstName} ${user.lastName}`);
-    }
-  }, [user]);
+    getUser()
+  }, [])
 
-  if (isLoading) return <h1>Page is loading...</h1>;
-  if (error) return <h1>{error.message}</h1>;
+  if(loading) {
+    return <h1>Page is loading...</h1>
+  }
 
   return (
     <div className="content">
       <h2>Bobber Eater</h2>
-      <h3>{fullname}</h3>
-      <ProfileForm user={user} />
+      <ProfileForm id={id} user={user} />
     </div>
   );
 }

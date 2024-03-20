@@ -1,15 +1,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProfileFormInput from './ProfileFormInput';
-
-import { useMutation } from 'react-query';
-import { putContact } from '../../services/ContactService.jsx';
-
 import './Profile.css';
 
-const BASE_API_URL = 'https://boolean-api-server.fly.dev/henrikrosenkilde/';
+const BASE_API_URL = 'https://localhost:7141/users/';
 
-const ProfileForm = ({ user }) => {
+const ProfileForm = ({ id, user }) => {
   const [form, setForm] = useState(user);
   const [updateSuccessful, setUpdateSuccessful] = useState(false);
 
@@ -27,13 +23,14 @@ const ProfileForm = ({ user }) => {
     setUpdateSuccessful(false);
   
     // Check if required fields are empty
-    if (!form.firstName || !form.lastName || !form.email) {
+    if (!form.firstName || !form.lastName || !form.email || !form.street || !form.city) {
       alert('Please fill out all required fields.');
       return;
     }
     
     try {
-      const response = await axios.put(BASE_API_URL + 'contact/1', form);
+      const response = await axios.put(BASE_API_URL + id, form);
+      console.log(response)
       setForm(response.data);
       setUpdateSuccessful(true);
       
@@ -44,8 +41,6 @@ const ProfileForm = ({ user }) => {
       setUpdateSuccessful(false);
     }
   };
-  
-  
 
   return (
     <form className="user-info-form" onSubmit={handleSubmit}>
