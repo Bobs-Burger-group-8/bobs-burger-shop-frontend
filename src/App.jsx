@@ -9,18 +9,17 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import LoginForm from './components/Login/LoginForm.jsx';
 import RegisterForm from './components/Register/RegisterForm.jsx';
 import Registered from './components/Register/Registered.jsx';
+import Logout from './components/Logout/Logout.jsx';
 
 const queryClient = new QueryClient();
 
 let AppCtx = createContext();
-let TokenCtx = createContext();
-let UserCtx = createContext();
+let LoggedInCtx = createContext();
 
 const App = () => {
   const [cart, setCart] = useState([])
   const [favorites, setFavorites] = useState([])
-  localStorage.setItem("userId", null)
-  localStorage.setItem("token", null)
+  const [loggedIn, setLoggedIn] = useState(false)
   const [defaultUser, setDefaultUser] = useState({
     "id": 1,
     "firstName": "Bob",
@@ -59,11 +58,13 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
     <AppCtx.Provider value={{cart:cart, updateCart:updateCart, favorites, onToggleFavorite:toggleFavorite, emptyCart:emptyCart}}>
+      <LoggedInCtx.Provider value={{loggedIn: loggedIn, setLoggedIn: setLoggedIn}}>
     <Router>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} /> 
           <Route path="/login" element={<LoginForm />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/registerd" element={<Registered />} />
           <Route path="/profile" element={<Profile />} />
@@ -71,9 +72,10 @@ const App = () => {
           <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </Router>
+      </LoggedInCtx.Provider>
       </AppCtx.Provider>
     </QueryClientProvider>
   );
 };
 
-export {App, AppCtx, TokenCtx, UserCtx};
+export {App, AppCtx, LoggedInCtx};

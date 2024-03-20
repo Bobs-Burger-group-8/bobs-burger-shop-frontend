@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import FormInput from './FormInput'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { LoggedInCtx } from '../../App';
 
 function LoginForm() {
+    const {loggedIn, setLoggedIn} = useContext(LoggedInCtx)
     const [form, setForm] = useState({
         email: "", 
         password: "",
@@ -29,6 +31,7 @@ function LoginForm() {
           const response = await axios.post('https://localhost:7141/auth/login', authUser)
           localStorage.setItem("token", response.data.token)
           localStorage.setItem("userId", response.data.id)
+          setLoggedIn(true)
           navigate("/")
       } catch(e) {
           if (e.response.data.length > 1) {
