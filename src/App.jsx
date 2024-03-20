@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './views/Home.jsx';
 import Profile from './views/Profile.jsx';
@@ -30,46 +30,47 @@ const App = () => {
     "street": "Burger Street 2",
     "city": "Burger Town"
   })
+
+  let cartFromLocal = localStorage.getItem('cart');
+  if(cart[0] == undefined && cartFromLocal!==null){
+    cartFromLocal = JSON.parse(localStorage.getItem('cart'));
+    setCart(cartFromLocal)
+  }
   
   const toggleFavorite = (item) => {
     if (favorites.includes(item)) {
       setFavorites(favorites.filter(element => element.productId !== item.id));
     } else {
-      let favorite = 
       setFavorites([...favorites, item]);
     }
+    console.log(favorites)
   };
 
   function updateCart(input){
     setCart(input)
+    localStorage.setItem('cart',JSON.stringify(cart))
+  }
+
+  function emptyCart(){
+    setCart([])
+    localStorage.removeItem('cart')
   }
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AppCtx.Provider
-        value={{
-          cart: cart,
-          updateCart: updateCart,
-          favorites,
-          toggleFavorite,
-        }}
-      >
-        <TokenCtx.Provider value={{ token: token, setToken: setToken }}>
-          <UserCtx.Provider value={{ user: user, setUser: setUser }}>
-            <Router>
-              <Navbar />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<LoginForm />} />
-                <Route path="/register" element={<RegisterForm />} />
-                <Route path="/registerd" element={<Registered />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/favourites" element={<Favourites />} />
-                <Route path="/checkout" element={<Checkout />} />
-              </Routes>
-            </Router>
-          </UserCtx.Provider>
-        </TokenCtx.Provider>
+    <AppCtx.Provider value={{cart:cart, updateCart:updateCart, favorites, onToggleFavorite:toggleFavorite, emptyCart:emptyCart}}>
+    <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} /> 
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/registerd" element={<Registered />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/favourites" element={<Favourites />} />
+          <Route path="/checkout" element={<Checkout />} />
+        </Routes>
+      </Router>
       </AppCtx.Provider>
     </QueryClientProvider>
   );

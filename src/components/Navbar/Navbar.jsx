@@ -31,7 +31,7 @@ function Navbar() {
       </li>
         }
         <li>
-          <Link to="/checkout">Checkout<Counter/></Link>
+          <Link to="/checkout">Checkout</Link>
         </li>
         <li>
           <Link to="/profile">Profile</Link>

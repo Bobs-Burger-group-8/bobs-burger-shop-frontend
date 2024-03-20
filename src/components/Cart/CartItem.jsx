@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { AppCtx } from "../../App"
 
-export default function CartItem({item}){
+export default function CartItem({item, refreshPage}){
     const ctx = useContext(AppCtx)
     
     function increase(){
@@ -23,18 +23,15 @@ export default function CartItem({item}){
             cart = ctx.cart.map((element) => element.id !== item.id? element: item)
             
         }
-        
-        console.log(cart)
-        
+               
         ctx.updateCart(cart)
-        localStorage.setItem('cart', ctx.cart)
+        refreshPage(cart)
     }
-  
 
     return(<><li>
         <img
           className="cart--item-icon"
-          src=""
+          src={item.image}
           alt="productimg"
         />
         <p>{item.name}</p>
