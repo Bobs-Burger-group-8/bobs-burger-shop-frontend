@@ -51,7 +51,7 @@ button {
   padding: 1rem 0;
   display: grid;
   grid-template-columns: 24px minmax(150px, 1fr) repeat(3, auto);
-  grid-gap: 0.5rem;
+  grid-gap: 2rem;
   align-items: center;
   border-bottom: 1px dotted #e0e0e0;
   font-size: 1.25rem;
@@ -62,7 +62,7 @@ button {
 }
 
 .cart--item-icon {
-  width: 24px;
+  width: 64px;
 }
 
 .center {

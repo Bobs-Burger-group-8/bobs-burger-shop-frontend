@@ -1,16 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from 'react';
-import Card from '../components/Cards/Card';
-
 import { getAllProducts } from '../services/ProductService';
-import Cart from './Checkout';
+import Cart from '../components/Cart/Cart';
 import { Link } from 'react-router-dom';
 import CardList from '../components/Cards/CardList';
 import { getFavourites } from '../services/FavouriteService';
 import { App, AppCtx } from '../App';
-import CartItemList from '../components/Cart/CartItemList';
-import Total from '../components/Cart/Total';
-
 
 function Home() {
   const [favorites, setFavorites] = useState([]);
@@ -46,10 +41,10 @@ console.log(ctx.cart)
       <h1 className='home-header'>Popular Boggers!</h1>
       <div className="content-container">
         <div className="cards-horizontal">
-        <CardList products={products}/>
+          <CardList products={products}/>
         </div>
         <div className='cart-container'>
-          <Cart />
+          <Cart></Cart>
           <div className='checkout-container'>
             <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
           </div>

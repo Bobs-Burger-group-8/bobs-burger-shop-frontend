@@ -29,12 +29,11 @@ export default function CartItem({item}){
         ctx.updateCart(cart)
         localStorage.setItem('cart', ctx.cart)
     }
-  
 
     return(<><li>
         <img
           className="cart--item-icon"
-          src=""
+          src={item.image}
           alt="productimg"
         />
         <p>{item.name}</p>
