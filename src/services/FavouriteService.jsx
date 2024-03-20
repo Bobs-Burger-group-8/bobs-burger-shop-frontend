@@ -3,7 +3,7 @@ import url from '../data/Environment'
 
 //Get all favourites
 export const getFavourites = async () => {
-    const { data } = await axios.get(url + `favourites'`);
+    const { data } = await axios.get(url + `favourites`);
     return data;
   };
 

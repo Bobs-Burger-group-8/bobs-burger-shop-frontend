@@ -1,37 +1,44 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Card from '../components/Cards/Card';
 
 import { getAllProducts } from '../services/ProductService';
 import Cart from './Checkout';
 import { Link } from 'react-router-dom';
+import CardList from '../components/Cards/CardList';
+import { getFavourites } from '../services/FavouriteService';
+import { App, AppCtx } from '../App';
+import CartItemList from '../components/Cart/CartItemList';
+import Total from '../components/Cart/Total';
 
 
 function Home() {
   const [favorites, setFavorites] = useState([]);
   const [products, setProducts] = useState([])
   const[isLoading, setLoadingStatus] = useState(true)
+  let ctx = useContext(AppCtx)
 
+  if(ctx.cart) {let cart = <Cart/>}
+ 
+console.log(ctx.cart)
   
-
-  
-  const get = async ()=>{
+  const loadProducts = async ()=>{
     let response =  await getAllProducts()
     setProducts(response)
+    let favs = await getFavourites();
+    setFavorites(favs)
   }
-
-  if (products[0] == undefined)get()
+  if (products[0] == undefined){ loadProducts()}
 
   
 
-  const toggleFavorite = (title) => {
-    if (favorites.includes(title)) {
-      setFavorites(favorites.filter(item => item !== title));
+  const toggleFavorite = (item) => {
+    if (favorites.includes(item)) {
+      setFavorites(favorites.filter(element => element.id !== item.id));
     } else {
-      setFavorites([...favorites, title]);
-      // You need to have the 'history' object defined here to use it
-      // history.push('/favorites'); // Navigate to Favorites page
+      setFavorites([...favorites, item]);
     }
+    console.log(favorites)
   };
 
   return (
@@ -39,9 +46,7 @@ function Home() {
       <h1 className='home-header'>Popular Boggers!</h1>
       <div className="content-container">
         <div className="cards-horizontal">
-          <Card title="Classic Burger" description="The all-time favorite classic burger with juicy beef patty, lettuce, tomato, and cheese." onToggleFavorite={toggleFavorite} />
-          <Card title="Classic Burger" description="The all-time favorite classic burger with juicy beef patty, lettuce, tomato, and cheese." onToggleFavorite={toggleFavorite} />
-          <Card title="Classic Burger" description="The all-time favorite classic burger with juicy beef patty, lettuce, tomato, and cheese." onToggleFavorite={toggleFavorite} />
+        <CardList products={products}/>
         </div>
         <div className='cart-container'>
           <Cart />

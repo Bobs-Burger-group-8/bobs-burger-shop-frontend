@@ -27,6 +27,7 @@ export default function CartItem({item}){
         console.log(cart)
         
         ctx.updateCart(cart)
+        localStorage.setItem('cart', ctx.cart)
     }
   
 

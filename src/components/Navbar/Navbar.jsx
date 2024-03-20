@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import "./Navbar.css"
+import Counter from '../Cart/Counter';
 
 function Navbar() {
   return (
@@ -17,7 +18,7 @@ function Navbar() {
           <Link to="/favourites">Favourites</Link>
         </li>
         <li>
-          <Link to="/checkout">Checkout</Link>
+          <Link to="/checkout">Checkout<Counter/></Link>
         </li>
         <li>
           <Link to="/profile">Profile</Link>

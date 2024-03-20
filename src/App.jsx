@@ -10,37 +10,36 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 const queryClient = new QueryClient();
 
 let AppCtx = createContext();
-const cartSample = [{
-  id: 0,
-  name: "Cheese",
-  description: "",
-  category: "burger",
-  price: 1,
-  image: "",
-  ingredients: [],
-  in_cart: 2
-}, {
-  id: 1,
-  name: "Bacon",
-  description: "",
-  category: "burger",
-  price: 1,
-  image: "",
-  ingredients: [],
-  in_cart: 1
-}]
 
 const App = () => {
-  const [cart, updateCart] = useState(cartSample)
+  const [cart, setCart] = useState([])
+  const [favorites, setFavorites] = useState([])
+  const [user, setUser] = useState({
+    "id": 1,
+    "firstName": "Bob",
+    "lastName": "Burgerman",
+    "email": "bob@burger.com",
+    "phone": "12345678",
+    "street": "Burger Street 2",
+    "city": "Burger Town"
+  })
+  
+  const toggleFavorite = (item) => {
+    if (favorites.includes(item)) {
+      setFavorites(favorites.filter(element => element.productId !== item.id));
+    } else {
+      let favorite = 
+      setFavorites([...favorites, item]);
+    }
+  };
 
-  function handleCart(input){
-      updateCart(input);
-
+  function updateCart(input){
+    setCart(input)
   }
 
   return (
     <QueryClientProvider client={queryClient}>
-    <AppCtx.Provider value={{cart:cart, updateCart:handleCart}}>
+    <AppCtx.Provider value={{cart:cart, updateCart:updateCart, favorites, toggleFavorite}}>
     <Router>
         <Navbar />
         <Routes>
