@@ -18,7 +18,7 @@ function Navbar() {
           <Link to="/favourites">Favourites</Link>
         </li>
         <li>
-          <Link to="/cart">Cart<Counter/></Link>
+          <Link to="/checkout">Checkout<Counter/></Link>
         </li>
         <li>
           <Link to="/profile">Profile</Link>

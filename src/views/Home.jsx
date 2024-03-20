@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from 'react';
 import Card from '../components/Cards/Card';
-import Cart from './Cart';
+
 import { getAllProducts } from '../services/ProductService';
+import Cart from './Checkout';
+import { Link } from 'react-router-dom';
 import CardList from '../components/Cards/CardList';
 import { getFavourites } from '../services/FavouriteService';
 import { App, AppCtx } from '../App';
@@ -39,16 +41,21 @@ console.log(ctx.cart)
     console.log(favorites)
   };
 
-  return (<>
+  return (
     <div className="home">
       <h1 className='home-header'>Popular Boggers!</h1>
-      <div className="cards-horizontal">
+      <div className="content-container">
+        <div className="cards-horizontal">
         <CardList products={products}/>
-      </div>
+        </div>
+        <div className='cart-container'>
+          <Cart />
+          <div className='checkout-container'>
+            <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
+          </div>
+        </div>
     </div>
-    <Cart/>
-    
-</>
+  </div>
   );
 }
 
