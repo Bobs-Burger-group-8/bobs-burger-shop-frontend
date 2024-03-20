@@ -47,7 +47,7 @@ function Home() {
         <CardList products={products} updateCart={(item)=>setCart([...cart,item])}/>
         </div>
         <div className='cart-container'>
-          <Cart></Cart>
+          <Cart refreshPage={(input)=>setCart(input)}></Cart>
           <div className='checkout-container'>
             <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
           </div>

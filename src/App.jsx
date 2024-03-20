@@ -26,6 +26,12 @@ const App = () => {
     "street": "Burger Street 2",
     "city": "Burger Town"
   })
+
+  let cartFromLocal = localStorage.getItem('cart');
+  if(cart[0] == undefined && cartFromLocal!==null){
+    cartFromLocal = JSON.parse(localStorage.getItem('cart'));
+    setCart(cartFromLocal)
+  }
   
   const toggleFavorite = (item) => {
     if (favorites.includes(item)) {
@@ -38,11 +44,17 @@ const App = () => {
 
   function updateCart(input){
     setCart(input)
+    localStorage.setItem('cart',JSON.stringify(cart))
+  }
+
+  function emptyCart(){
+    setCart([])
+    localStorage.removeItem('cart')
   }
 
   return (
     <QueryClientProvider client={queryClient}>
-    <AppCtx.Provider value={{cart:cart, updateCart:updateCart, favorites, onToggleFavorite:toggleFavorite}}>
+    <AppCtx.Provider value={{cart:cart, updateCart:updateCart, favorites, onToggleFavorite:toggleFavorite, emptyCart:emptyCart}}>
     <Router>
         <Navbar />
         <Routes>

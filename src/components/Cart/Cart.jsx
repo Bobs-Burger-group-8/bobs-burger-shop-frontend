@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import CartItemList from './CartItemList'
 import Total from './Total'
 import './Cart.css'
+import { AppCtx } from '../../App'
 
-function Cart() {
+function Cart({refreshPage}) {
+    let ctx = useContext(AppCtx)
   return (
     <>
-        <CartItemList />
+        <CartItemList refreshPage={refreshPage}/>
         <Total />
+        <button onClick={ctx.emptyCart}>Empty cart</button>
     </>
   )
 }
