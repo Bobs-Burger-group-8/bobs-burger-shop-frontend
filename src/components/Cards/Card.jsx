@@ -8,9 +8,8 @@ import "./Cards.css";
 import { useContext } from 'react';
 import { AppCtx } from '../../App';
 
-function Card(props) {
+function Card({product, updateCart}) {
 let ctx = useContext(AppCtx)
-const product = props.product;
 
 function handleClick(){
   let cartItemIndex = ctx.cart.findIndex(e=>e.id== product.id)
@@ -23,6 +22,7 @@ function handleClick(){
      updateArray.push(product)
   }
   ctx.updateCart(updateArray);
+  updateCart(ctx.cart)
 }
 
 
@@ -33,7 +33,7 @@ function handleClick(){
         <h2 className="card-title">{product.name? product.name:'missing name'}</h2>
         <div className="card-image-container">
           <img className="card-image" src={product.image} alt={product.name} />
-          <button className="favorite-button" onClick={() => onToggleFavorite(name)}>
+          <button className="favorite-button" onClick={() => ctx.onToggleFavorite(product)}>
             <FaHeart />
           </button>
           <hr />
