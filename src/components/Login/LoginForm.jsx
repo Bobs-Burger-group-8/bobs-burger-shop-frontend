@@ -36,8 +36,10 @@ function LoginForm() {
       } catch(e) {
           if (e.response.data.length > 1) {
               alert(e.response.data[1].description)
-          } else {
+          } else if (e.response.data[0].description) {
               alert(e.response.data[0].description)
+          } else {
+            alert("User does not exist")
           }
           return;
       }
