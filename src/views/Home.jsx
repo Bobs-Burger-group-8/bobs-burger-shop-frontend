@@ -21,11 +21,6 @@ function Home() {
     filterProducts();
   }, [ctx.products]);
 
-  const loadProducts = async () => {
-    const response = await getAllProducts();
-    ctx.setProducts(response);
-  };
-
   //update list on filter based on context
   const filterProducts = () => {
     setFilteredProducts(ctx.products);
