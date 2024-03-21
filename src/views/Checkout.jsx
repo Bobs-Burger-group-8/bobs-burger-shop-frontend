@@ -10,6 +10,9 @@ export default function Checkout() {
     let ctx = useContext(AppCtx)
 
     const toggleReceipt = async () => {
+
+        ctx.setReceipt(ctx.cart)
+
         let total = 0;
         const orderProducts = []
 
@@ -27,15 +30,18 @@ export default function Checkout() {
         try {
             await addOrder(order);
             setShowReceipt(!showReceipt);
+            
         } catch (error) {
             console.error("Error placing order:", error);
         }
+
+       ctx.emptyCart()
     };
     
 
     return (
-        <div>
-            <div>
+        <div className="checkout-container">
+            <div className="cart-summary">
                 {!showReceipt && (
                     <>
                         <CartItemList />

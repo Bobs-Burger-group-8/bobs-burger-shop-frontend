@@ -8,6 +8,6 @@ return(
 
 <>
 {
-   products.map((product, index)=>(<Card key={index} product={product} updateCart={updateCart}/>)) 
+   products.map((product, index)=>(<Card key={index} product={product} refreshCart={updateCart}/>)) 
 }</>
 )}}

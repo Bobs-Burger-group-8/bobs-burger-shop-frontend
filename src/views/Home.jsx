@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { getAllProducts } from '../services/ProductService';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CardList from '../components/Cards/CardList';
 import { AppCtx, LoggedInCtx } from '../App';
@@ -7,6 +6,7 @@ import CartItemList from '../components/Cart/CartItemList';
 import '../components/Cart/Cart.css';
 import Favourites from './Favourites';
 import ProductFilter from '../components/ProductFilter/ProductFilter';
+import Total from '../components/Cart/Total';
 
 function Home() {
   const [cart, setCart] = useState([]);
@@ -19,7 +19,9 @@ function Home() {
     filterProducts();
   }, [ctx.products]);
 
-  //update list on filter based on context
+
+
+  // Update list on filter based on context
   const filterProducts = () => {
     setFilteredProducts(ctx.products);
   };
@@ -29,23 +31,24 @@ function Home() {
       <h1 className='home-header'>Popular Boggers!</h1>
       <ProductFilter setFilteredProducts={setFilteredProducts} products={ctx.products} />
       <div className="content-container">
-        <div className="cards-horizontal">
+        <div className="product-list-container">
           <CardList products={filteredProducts} updateCart={(item) => setCart([...cart, item])} />
         </div>
         <div className='cart-container'>
-          <CartItemList cart={cart} />
-          <div className='checkout-container'>
-            <button onClick={() => setCart([])} className='empty-cart-btn'>Empty cart</button>
-            <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
+          <CartItemList cart={cart} /><Total/>
+          
+
+            <div className='checkout-btn-container'>
+              <button onClick={ctx.emptyCart} className='empty-cart-btn'>Empty cart</button>
+              <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
+          </div>
           </div>
         </div>
-      </div>
-      <div className="content-container">
-        <div className="cards-horizontal">
+          </div>
+      <div className="favorites-container">
         {loggedIn &&
-          <Favourites />
+        <Favourites updateCart={(item)=> setCart([...cart, item])} />
         }
-        </div>
       </div>
     </div>
   );

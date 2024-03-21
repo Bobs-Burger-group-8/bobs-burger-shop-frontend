@@ -9,9 +9,11 @@ export default function Total(){
         for(let i =0; i<ctx.cart.length; i++){
             sum = sum + (Number.parseFloat(ctx.cart[i].price)*ctx.cart[i].in_cart)
             
-    }
+        }
     
     }
+
+    console.log(sum)
     return(
         
       <div className="total-section">
@@ -21,8 +23,9 @@ export default function Total(){
       </div>
 
       <div>
-        <p className="">£{sum.toFixed(2)|0.00}</p>
+        £<input className="total" type="number" value={sum.toFixed(2)||0.00} disabled/>
       </div>
+      <hr />
       
     </div>
     )

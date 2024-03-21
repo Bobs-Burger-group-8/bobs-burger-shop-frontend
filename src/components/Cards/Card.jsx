@@ -8,7 +8,7 @@ import { useContext } from 'react';
 import { AppCtx } from '../../App';
 import { Link } from 'react-router-dom';
 
-function Card({product, updateCart}) {
+function Card({product, refreshCart}) {
 let ctx = useContext(AppCtx)
 const [heartColor, setColor] = useState('black')
 
@@ -24,17 +24,15 @@ function handleClick(){
      updateArray.push(product)
   }
   ctx.updateCart(updateArray);
-  updateCart(ctx.cart)
+  refreshCart(ctx.cart)
 }
 
 function updateFavs(){
    ctx.onToggleFavorite(product)
-  
-   if(heartColor=='black'){ setColor('red')
+   if(item=='black'){ setColor('red')
   }else if(heartColor=='red'){
     setColor('black')
   }
-
 }
 
 

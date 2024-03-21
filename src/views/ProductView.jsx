@@ -31,8 +31,7 @@ export default function ProductView(){
        let response =  await getProductIngredients(id)
           
        setIngredients(await response);
-       }
-      
+       }      
     
     function handleClick(){
         let cartItemIndex = ctx.cart.findIndex(e=>e.id== product.id)
