@@ -36,13 +36,15 @@ function Home() {
         </div>
         <div className='cart-container'>
           <CartItemList cart={cart} /><Total/>
-          <div className='checkout-container'>
           
-            <button onClick={ctx.emptyCart} className='empty-cart-btn'>Empty cart</button>
-            <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
+
+            <div className='checkout-btn-container'>
+              <button onClick={ctx.emptyCart} className='empty-cart-btn'>Empty cart</button>
+              <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
+          </div>
           </div>
         </div>
-      </div>
+          </div>
       <div className="favorites-container">
         {loggedIn &&
         <Favourites updateCart={(item)=> setCart([...cart, item])} />

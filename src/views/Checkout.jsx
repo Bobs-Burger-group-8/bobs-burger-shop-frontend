@@ -40,8 +40,8 @@ export default function Checkout() {
     
 
     return (
-        <div>
-            <div>
+        <div className="checkout-container">
+            <div className="cart-summary">
                 {!showReceipt && (
                     <>
                         <CartItemList />
