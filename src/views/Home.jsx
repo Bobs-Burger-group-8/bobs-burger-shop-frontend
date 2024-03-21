@@ -33,7 +33,7 @@ function Home() {
         <div className='cart-container'>
           <CartItemList cart={cart} />
           <div className='checkout-container'>
-            <button onClick={() => setCart([])} className='empty-cart-btn'>Empty cart</button>
+            <button onClick={ctx.emptyCart} className='empty-cart-btn'>Empty cart</button>
             <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
           </div>
         </div>
