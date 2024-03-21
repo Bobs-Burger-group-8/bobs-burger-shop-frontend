@@ -13,21 +13,15 @@ import Favourites from './Favourites';
 
 
 function Home() {
-  const [favorites, setFavorites] = useState([]);
-  //const [products, setProducts] = useState([])
   const [cart, setCart] = useState([])
   let ctx = useContext(AppCtx)
  
-
- 
-  //if (products[0] == undefined){loadProducts()}
   const loadProducts = async ()=>{
     let response =  await getAllProducts()
     ctx.setProducts(response)
   
   }
  if(ctx.products[0] == undefined) loadProducts();
- // if (favorites[0] == undefined){ loadFavourites()}
 
   return (
     <div className="home">
