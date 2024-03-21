@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { AppCtx } from "../../App"
 
 export default function Total(){

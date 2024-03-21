@@ -27,6 +27,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 .cart-summary {
@@ -176,6 +177,6 @@ input::-webkit-inner-spin-button {
 }
 .total-section{
   padding-left: 2rem;
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(255, 255, 255);
 
 }
