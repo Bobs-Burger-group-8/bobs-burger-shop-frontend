@@ -11,7 +11,10 @@ function OrderHistory({ id, user }) {
     const [loading, setLoading] = useState(true)
 
     async function getOrders() {
-        await axios.get(BASE_API_URL + "orders")
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+          };
+        await axios.get(BASE_API_URL + "orders", config)
             .then(res => setOrders(res.data.filter(order => order.userId === id)))
         setProducts(await getAllProducts())
         setLoading(false)
