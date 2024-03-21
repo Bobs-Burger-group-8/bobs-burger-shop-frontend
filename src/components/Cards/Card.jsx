@@ -47,8 +47,9 @@ function updateFavs(){
           </button>
           <hr />
         </div>
+        <h3>£{product.price}</h3>
         <p className="card-description">{product.description}</p>
-        <button className='add-to-cart' onClick={handleClick}>Add to cart</button>
+       <button className='add-to-cart' onClick={handleClick}>Add to cart</button>
       </div>
     </div>
   );
