@@ -13,9 +13,6 @@ function Home() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const ctx = useContext(AppCtx);
 
-  useEffect(() => {
-    loadProducts();
-  }, []);
 
   useEffect(() => {
     filterProducts();
