@@ -21,10 +21,10 @@ User can view more info about a product before adding to cart (Currently unavail
 User can add items to cart \
 User can add toppings to product (Currently unavailable) \
 User can remove unwanted toppings (Currently unavailable) \
-Filtering-option based on category and sort by price/name \
+Filtering-option based on category and sort by price/name 
 
 Extras: \
 Users can create userporfiles and save favorites/see receipt (ok) \
 User can choose restaurant for takeaway-option \
 Owner can create coupons \
-User can mark products as "favourites" and view then in an own component (implemented) \
+User can mark products as "favourites" and view then in an own component (implemented) 
