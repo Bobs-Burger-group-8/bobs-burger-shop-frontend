@@ -29,10 +29,7 @@ function handleClick(){
 
 function updateFavs(){
    ctx.onToggleFavorite(product)
-   if(item=='black'){ setColor('red')
-  }else if(heartColor=='red'){
-    setColor('black')
-  }
+
 }
 
 
