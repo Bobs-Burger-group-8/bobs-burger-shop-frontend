@@ -6,6 +6,7 @@ import CartItemList from '../components/Cart/CartItemList';
 import '../components/Cart/Cart.css';
 import Favourites from './Favourites';
 import ProductFilter from '../components/ProductFilter/ProductFilter';
+import Total from '../components/Cart/Total';
 
 function Home() {
   const [cart, setCart] = useState([]);
@@ -34,8 +35,9 @@ function Home() {
           <CardList products={filteredProducts} updateCart={(item) => setCart([...cart, item])} />
         </div>
         <div className='cart-container'>
-          <CartItemList cart={cart} />
-          <div className='checkout-container'>
+          <CartItemList cart={cart} /><Total/>
+          
+
             <div className='checkout-btn-container'>
               <button onClick={ctx.emptyCart} className='empty-cart-btn'>Empty cart</button>
               <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
@@ -45,7 +47,7 @@ function Home() {
           </div>
       <div className="favorites-container">
         {loggedIn &&
-        <Favourites />
+        <Favourites updateCart={(item)=> setCart([...cart, item])} />
         }
       </div>
     </div>

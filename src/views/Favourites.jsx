@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import CardList from '../components/Cards/CardList'
 import { AppCtx } from '../App'
 
-function Favourites() {
+function Favourites({updateCart}) {
   let ctx = useContext(AppCtx)
   const[favProducts, setFavProducts] = useState([])
   
@@ -26,7 +26,7 @@ function Favourites() {
   <div>
   <h2 className='favourites-header'>Your Favourites</h2>
   <div className='favourites-container'>
-    {favProducts && <CardList products={favProducts}/>}
+    {favProducts && <CardList products={favProducts} updateCart={updateCart}/>}
     </div>
   </div>
     </>
