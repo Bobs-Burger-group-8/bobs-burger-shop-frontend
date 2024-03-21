@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { getAllProducts } from '../services/ProductService';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CardList from '../components/Cards/CardList';
-import { AppCtx } from '../App';
+import { AppCtx, LoggedInCtx } from '../App';
 import CartItemList from '../components/Cart/CartItemList';
 import '../components/Cart/Cart.css';
 import Favourites from './Favourites';
@@ -10,21 +9,16 @@ import ProductFilter from '../components/ProductFilter/ProductFilter';
 
 function Home() {
   const [cart, setCart] = useState([]);
+  const {loggedIn} = useContext(LoggedInCtx)
   const [filteredProducts, setFilteredProducts] = useState([]);
   const ctx = useContext(AppCtx);
 
-  useEffect(() => {
-    loadProducts();
-  }, []);
 
   useEffect(() => {
     filterProducts();
   }, [ctx.products]);
 
-  const loadProducts = async () => {
-    const response = await getAllProducts();
-    ctx.setProducts(response);
-  };
+
 
   // Update list on filter based on context
   const filterProducts = () => {
@@ -42,13 +36,15 @@ function Home() {
         <div className='cart-container'>
           <CartItemList cart={cart} />
           <div className='checkout-container'>
-            <button onClick={() => setCart([])} className='empty-cart-btn'>Empty cart</button>
+            <button onClick={ctx.emptyCart} className='empty-cart-btn'>Empty cart</button>
             <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
           </div>
         </div>
       </div>
       <div className="favorites-container">
+        {loggedIn &&
         <Favourites />
+        }
       </div>
     </div>
   );

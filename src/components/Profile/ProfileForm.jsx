@@ -29,7 +29,10 @@ const ProfileForm = ({ id, user }) => {
     }
     
     try {
-      const response = await axios.put(BASE_API_URL + id, form);
+      const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+      };
+      const response = await axios.put(BASE_API_URL + id, form, config);
       console.log(response)
       setForm(response.data);
       setUpdateSuccessful(true);

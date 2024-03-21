@@ -30,7 +30,7 @@ function Navbar() {
           <Link to="/login">Login/Register</Link>
         </li>
         :
-        <li>
+        <li onClick={logout}>
           <Link to="/logout">Logout</Link>
         </li>
         }

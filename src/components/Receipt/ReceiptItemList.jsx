@@ -8,7 +8,7 @@ export default function ReceiptItemList() {
     return (
         <div className="cart--item-list-container">
             <ul className="item-list cart--item-list">
-                {ctx.cart.map((item, index) => (
+                {ctx.receipt.map((item, index) => (
                     <ReceiptItem key={index} item={item} />
                 ))}
             </ul>

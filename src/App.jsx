@@ -10,7 +10,9 @@ import LoginForm from './components/Login/LoginForm.jsx';
 import RegisterForm from './components/Register/RegisterForm.jsx';
 import Registered from './components/Register/Registered.jsx';
 import Logout from './components/Logout/Logout.jsx';
-import { getFavourites, getFavouritesByUserId, removeFavourite, saveNewFavourite } from './services/FavouriteService.jsx';
+import { getFavouritesByUserId, removeFavourite, saveNewFavourite } from './services/FavouriteService.jsx';
+import ProductView from './views/ProductView.jsx';
+import { getAllProducts } from './services/ProductService.jsx';
 
 const queryClient = new QueryClient();
 
@@ -19,6 +21,7 @@ let LoggedInCtx = createContext();
 
 const App = () => {
   const [cart, setCart] = useState([])
+  const [receipt, setReceipt] = useState([])
   const [favorites, setFavorites] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
   const [products, setProducts] = useState([])
@@ -37,9 +40,15 @@ const App = () => {
     if(favorites[0] === undefined){
       loadFavourites()
     }
+   
+   if(products[0] == undefined) loadProducts();
   }, [loggedIn])
 
- 
+  const loadProducts = async ()=>{
+    let response =  await getAllProducts()
+    setProducts(response)
+  
+  }
   
   const toggleFavorite = async (item) => {
     if(loggedIn==false){
@@ -103,7 +112,7 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-    <AppCtx.Provider value={{cart:cart, updateCart:updateCart, favorites, onToggleFavorite:toggleFavorite, emptyCart:emptyCart, products:products, allFavs:favorites, setProducts:setProducts}}>
+    <AppCtx.Provider value={{cart:cart, updateCart:updateCart, favorites, onToggleFavorite:toggleFavorite, emptyCart:emptyCart, products:products, allFavs:favorites, setProducts:setProducts, setReceipt:setReceipt, receipt:receipt}}>
       <LoggedInCtx.Provider value={{loggedIn: loggedIn, setLoggedIn: setLoggedIn}}>
     <Router>
         <Navbar />
@@ -116,6 +125,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/favourites" element={<Favourites />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/products/:id" element={<ProductView/>} />
         </Routes>
       </Router>
       </LoggedInCtx.Provider>

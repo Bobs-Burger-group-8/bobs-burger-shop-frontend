@@ -10,7 +10,10 @@ export default function Profile() {
   const [loading, setLoading] = useState(true)
 
   async function getUser() {
-    await axios.get("https://localhost:7141/users/" + id).then(res => setUser(res.data))
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    };
+    await axios.get("https://localhost:7141/users/" + id, config).then(res => setUser(res.data))
     setLoading(false)
   }
 

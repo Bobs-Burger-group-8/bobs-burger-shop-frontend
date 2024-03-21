@@ -6,6 +6,7 @@ import { FaHeart } from 'react-icons/fa'; // Import heart icon from react-icons 
 import "./Cards.css";
 import { useContext } from 'react';
 import { AppCtx } from '../../App';
+import { Link } from 'react-router-dom';
 
 function Card({product, updateCart}) {
 let ctx = useContext(AppCtx)
@@ -40,7 +41,7 @@ function updateFavs(){
   return (
     <div className="card">
       <div className="card-content">
-        <h2 className="card-title">{product.name? product.name:'missing name'}</h2>
+        <Link to={`/products/${product.id}`}><h2 className="card-title" style={{color:'black'}}>{product.name? product.name:'missing name'}</h2></Link>
         <div className="card-image-container">
           <img className="card-image" src={product.image} alt={product.name} />
           <button className="favorite-button" onClick={() => updateFavs()}>
