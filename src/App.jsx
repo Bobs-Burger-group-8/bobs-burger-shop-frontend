@@ -78,11 +78,13 @@ const App = () => {
   };
 
   const loadFavourites = async ()=>{
-    let response =  await getFavouritesByUserId()
-    if(response[0] !== undefined){
-      setFavorites(response)
+    if(localStorage.getItem("userId") !== null && loggedIn==false) {
+      let response =  await getFavouritesByUserId()
+        if(response[0] !== undefined){
+          setFavorites(response)
 
-     }
+        }
+    }
   }
 
   function updateCart(input){
