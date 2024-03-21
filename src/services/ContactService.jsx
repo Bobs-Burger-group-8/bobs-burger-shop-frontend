@@ -2,7 +2,10 @@ import axios from 'axios';
 import url from '../data/Environment'
 
 export const getContact = async (id) => {
-  const { data } = await axios.get(url + `users/${id}`);
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+  };
+  const { data } = await axios.get(url + `users/${id}`, config);
   return data;
 };
 
