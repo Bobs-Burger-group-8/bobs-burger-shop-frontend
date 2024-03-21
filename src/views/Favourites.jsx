@@ -21,17 +21,14 @@ function Favourites({updateCart}) {
     setFavProducts(arr)
   
   },[ctx.allFavs])
-
-
-
-  
-
-
   return (<>
-    
-    <div>Favourites</div>
-    <h2>Your Favourites</h2>
+
+  <div>
+  <h2 className='favourites-header'>Your Favourites</h2>
+  <div className='favourites-container'>
     {favProducts && <CardList products={favProducts} updateCart={updateCart}/>}
+    </div>
+  </div>
     </>
   )
 }

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CardList from '../components/Cards/CardList';
-import { AppCtx } from '../App';
+import { AppCtx, LoggedInCtx } from '../App';
 import CartItemList from '../components/Cart/CartItemList';
 import '../components/Cart/Cart.css';
 import Favourites from './Favourites';
@@ -10,6 +10,7 @@ import Total from '../components/Cart/Total';
 
 function Home() {
   const [cart, setCart] = useState([]);
+  const {loggedIn} = useContext(LoggedInCtx)
   const [filteredProducts, setFilteredProducts] = useState([]);
   const ctx = useContext(AppCtx);
 
@@ -18,7 +19,9 @@ function Home() {
     filterProducts();
   }, [ctx.products]);
 
-  //update list on filter based on context
+
+
+  // Update list on filter based on context
   const filterProducts = () => {
     setFilteredProducts(ctx.products);
   };
@@ -28,7 +31,7 @@ function Home() {
       <h1 className='home-header'>Popular Boggers!</h1>
       <ProductFilter setFilteredProducts={setFilteredProducts} products={ctx.products} />
       <div className="content-container">
-        <div className="cards-horizontal">
+        <div className="product-list-container">
           <CardList products={filteredProducts} updateCart={(item) => setCart([...cart, item])} />
         </div>
         <div className='cart-container'>
@@ -40,10 +43,10 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="content-container">
-        <div className="cards-horizontal">
-          <Favourites updateCart={(item)=> setCart([...cart, item])} />
-        </div>
+      <div className="favorites-container">
+        {loggedIn &&
+        <Favourites updateCart={(item)=> setCart([...cart, item])} />
+        }
       </div>
     </div>
   );
