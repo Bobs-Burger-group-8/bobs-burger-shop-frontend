@@ -1,3 +1,7 @@
 .container{
     max-width: 60vw;
+    display: grid;
+    grid-template-columns:  auto auto auto auto;
+    padding-bottom: 2rem;
 }
+

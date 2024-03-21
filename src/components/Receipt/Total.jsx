@@ -1,13 +1,13 @@
 import { useContext } from "react"
 import { AppCtx } from "../../App"
 
-export default function Total(){
+export default function ReceiptTotal(){
     const ctx = useContext(AppCtx);
     let sum = 0.00;
-    if(ctx.cart.length>0){
+    if(ctx.receipt.length>0){
 
-        for(let i =0; i<ctx.cart.length; i++){
-            sum = sum + (Number.parseFloat(ctx.cart[i].price)*ctx.cart[i].in_cart)
+        for(let i =0; i<ctx.receipt.length; i++){
+            sum = sum + (Number.parseFloat(ctx.receipt[i].price)*ctx.receipt[i].in_cart)
             
         }
     

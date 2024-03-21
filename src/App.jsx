@@ -69,7 +69,6 @@ const App = () => {
         }
       }
 
-      console.log(favId)
       if (favId > 0) {
           let response = await removeFavourite(favId)
        
