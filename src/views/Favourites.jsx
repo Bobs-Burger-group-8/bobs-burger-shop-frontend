@@ -29,7 +29,6 @@ function Favourites() {
 
   return (<>
     
-    <div>Favourites</div>
     <h2>Your Favourites</h2>
     {favProducts && <CardList products={favProducts}/>}
     </>
