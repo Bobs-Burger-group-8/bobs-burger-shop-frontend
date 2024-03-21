@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { getAllProducts } from '../services/ProductService';
 import { Link } from 'react-router-dom';
 import CardList from '../components/Cards/CardList';
-import { AppCtx } from '../App';
+import { AppCtx, LoggedInCtx } from '../App';
 import CartItemList from '../components/Cart/CartItemList';
 import '../components/Cart/Cart.css';
 import Favourites from './Favourites';
@@ -10,6 +10,7 @@ import ProductFilter from '../components/ProductFilter/ProductFilter';
 
 function Home() {
   const [cart, setCart] = useState([]);
+  const {loggedIn} = useContext(LoggedInCtx)
   const [filteredProducts, setFilteredProducts] = useState([]);
   const ctx = useContext(AppCtx);
 
@@ -41,7 +42,9 @@ function Home() {
       </div>
       <div className="content-container">
         <div className="cards-horizontal">
+        {loggedIn &&
           <Favourites />
+        }
         </div>
       </div>
     </div>
