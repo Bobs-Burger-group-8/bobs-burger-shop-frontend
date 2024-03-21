@@ -5,6 +5,7 @@ import { getContact } from '../services/ContactService.jsx';
 import { useEffect, useState } from 'react';
 import '../components/Profile/Profile.css';
 import axios from 'axios';
+import OrderHistory from '../components/Profile/OrderHistory.jsx';
 
 export default function Profile() {
   const [id, setId] = useState(localStorage.getItem("userId"))
@@ -12,7 +13,10 @@ export default function Profile() {
   const [loading, setLoading] = useState(true)
 
   async function getUser() {
-    await axios.get("https://localhost:7141/users/" + id).then(res => setUser(res.data))
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    };
+    await axios.get("https://localhost:7141/users/" + id, config).then(res => setUser(res.data))
     setLoading(false)
   }
 
@@ -27,7 +31,12 @@ export default function Profile() {
   return (
     <div className="content">
       <h2>Bobber Eater</h2>
+      <div className="content-formhist">
       <ProfileForm id={id} user={user} />
+      <div className='history'>
+        <OrderHistory id={id} user={user} />
+      </div>
+      </div>
     </div>
   );
 }
