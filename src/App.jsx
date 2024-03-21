@@ -21,6 +21,7 @@ let LoggedInCtx = createContext();
 
 const App = () => {
   const [cart, setCart] = useState([])
+  const [receipt, setReceipt] = useState([])
   const [favorites, setFavorites] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
   const [products, setProducts] = useState([])
@@ -111,7 +112,7 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-    <AppCtx.Provider value={{cart:cart, updateCart:updateCart, favorites, onToggleFavorite:toggleFavorite, emptyCart:emptyCart, products:products, allFavs:favorites, setProducts:setProducts}}>
+    <AppCtx.Provider value={{cart:cart, updateCart:updateCart, favorites, onToggleFavorite:toggleFavorite, emptyCart:emptyCart, products:products, allFavs:favorites, setProducts:setProducts, setReceipt:setReceipt, receipt:receipt}}>
       <LoggedInCtx.Provider value={{loggedIn: loggedIn, setLoggedIn: setLoggedIn}}>
     <Router>
         <Navbar />
