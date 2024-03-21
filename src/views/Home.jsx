@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { getAllProducts } from '../services/ProductService';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CardList from '../components/Cards/CardList';
 import { AppCtx } from '../App';
