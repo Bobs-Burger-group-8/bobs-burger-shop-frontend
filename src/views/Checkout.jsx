@@ -11,13 +11,16 @@ export default function Checkout() {
 
     const toggleReceipt = async () => {
         let total = 0;
+        const orderProducts = []
+
         ctx.cart.forEach(item => {
             total += (item.price * item.in_cart);
+            orderProducts.push({productId: item.id, quantity: item.in_cart})
         });
     
         const order = {
             userId: localStorage.getItem("userId"),
-            productIds: ctx.cart.map(item => item.id),
+            products: orderProducts,
             total: total.toFixed(2)
         };
     
