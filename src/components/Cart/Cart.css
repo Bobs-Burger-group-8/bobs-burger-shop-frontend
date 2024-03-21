@@ -147,3 +147,19 @@ button {
 .empty-checkout-btn{
   background-color: rgb(255, 94, 94);
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.total {
+  border-style: none;
+  font-size: large;
+  background-color: #ffffff;
+  
+
+}
+.total-section{
+  padding-left: 2rem;
+}
