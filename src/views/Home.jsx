@@ -26,7 +26,7 @@ function Home() {
     ctx.setProducts(response);
   };
 
-  //update list on filter based on context
+  // Update list on filter based on context
   const filterProducts = () => {
     setFilteredProducts(ctx.products);
   };
@@ -36,7 +36,7 @@ function Home() {
       <h1 className='home-header'>Popular Boggers!</h1>
       <ProductFilter setFilteredProducts={setFilteredProducts} products={ctx.products} />
       <div className="content-container">
-        <div className="cards-horizontal">
+        <div className="product-list-container">
           <CardList products={filteredProducts} updateCart={(item) => setCart([...cart, item])} />
         </div>
         <div className='cart-container'>
@@ -47,10 +47,8 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="content-container">
-        <div className="cards-horizontal">
-          <Favourites />
-        </div>
+      <div className="favorites-container">
+        <Favourites />
       </div>
     </div>
   );

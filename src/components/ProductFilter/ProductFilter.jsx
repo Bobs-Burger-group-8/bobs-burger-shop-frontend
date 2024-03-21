@@ -6,35 +6,50 @@ function ProductFilter({ setFilteredProducts, products }) {
 
   const handleSearch = () => {
     const searchTerm = searchQuery.toLowerCase();
-    const filtered = products.filter(product => (
+    let filtered = products.filter(product => (
       product.name.toLowerCase().includes(searchTerm) ||
       product.category.toLowerCase().includes(searchTerm)
     ));
 
     if (selectedCategory !== 'all') {
-      setFilteredProducts(filtered.filter(product => product.category === selectedCategory));
-    } else {
-      setFilteredProducts(filtered);
+      filtered = filtered.filter(product => product.category === selectedCategory);
     }
+    setFilteredProducts(filtered);
   };
 
-  const handleCategoryChange = (event) => {
-    const category = event.target.value;
+  const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-    if (category === 'all') {
-      setFilteredProducts(products);
-    } else {
-      setFilteredProducts(products.filter(product => product.category === category));
+    filterProducts(category);
+  };
+
+  const filterProducts = (category) => {
+    const searchTerm = searchQuery.toLowerCase();
+    let filtered = products.filter(product => (
+      product.name.toLowerCase().includes(searchTerm) ||
+      product.category.toLowerCase().includes(searchTerm)
+    ));
+
+    if (category !== 'all') {
+      filtered = filtered.filter(product => product.category === category);
     }
+    setFilteredProducts(filtered);
+  };
+
+  const handleSortByName = () => {
+    const sortedProducts = [...products].sort((a, b) => a.name.localeCompare(b.name));
+    setFilteredProducts(sortedProducts);
+  };
+
+  const handleSortByPrice = () => {
+    const sortedProducts = [...products].sort((a, b) => a.price - b.price);
+    setFilteredProducts(sortedProducts);
   };
 
   return (
     <div className="filter-container">
-      <select id="filter-dropdown" value={selectedCategory} onChange={handleCategoryChange}>
-        <option value="all">All</option>
-        <option value="burger">Burger</option>
-        <option value="drink">Drink</option>
-      </select>
+        <button onClick={() => handleCategoryChange('all')}>All</button>
+        <button onClick={() => handleCategoryChange('burger')}>Burger</button>
+        <button onClick={() => handleCategoryChange('drink')}>Drink</button>
       <input
         type="text"
         placeholder="Search by name or category"
@@ -42,6 +57,8 @@ function ProductFilter({ setFilteredProducts, products }) {
         onChange={e => setSearchQuery(e.target.value)}
       />
       <button onClick={handleSearch}>Search</button>
+      <button onClick={handleSortByName}>Sort by Name</button>
+      <button onClick={handleSortByPrice}>Sort by Price</button>
     </div>
   );
 }

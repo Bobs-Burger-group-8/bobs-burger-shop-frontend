@@ -1,7 +1,4 @@
 import ProfileForm from '../components/Profile/ProfileForm';
-import { useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import { getContact } from '../services/ContactService.jsx';
 import { useEffect, useState } from 'react';
 import '../components/Profile/Profile.css';
 import axios from 'axios';
@@ -29,10 +26,11 @@ export default function Profile() {
     <div className="content">
       <h2>Bobber Eater</h2>
       <div className="content-formhist">
-      <ProfileForm id={id} user={user} />
-      <div className='history'>
-        <OrderHistory id={id} user={user} />
-      </div>
+        <div className='history'>
+          <ProfileForm id={id} user={user} />
+          <h2>Order history</h2>
+          <OrderHistory id={id} user={user} />
+        </div>
       </div>
     </div>
   );
