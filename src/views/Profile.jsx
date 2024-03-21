@@ -5,6 +5,7 @@ import { getContact } from '../services/ContactService.jsx';
 import { useEffect, useState } from 'react';
 import '../components/Profile/Profile.css';
 import axios from 'axios';
+import OrderHistory from '../components/Profile/OrderHistory.jsx';
 
 export default function Profile() {
   const [id, setId] = useState(localStorage.getItem("userId"))
@@ -27,7 +28,12 @@ export default function Profile() {
   return (
     <div className="content">
       <h2>Bobber Eater</h2>
+      <div className="content-formhist">
       <ProfileForm id={id} user={user} />
+      <div className='history'>
+        <OrderHistory id={id} user={user} />
+      </div>
+      </div>
     </div>
   );
 }

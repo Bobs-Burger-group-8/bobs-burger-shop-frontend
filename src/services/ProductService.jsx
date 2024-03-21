@@ -2,7 +2,6 @@ import axios from 'axios';
 import url from '../data/Environment'
 
 export const getAllProducts = async () => {
-    
     const  { data } = await axios.get(url + `products`);
     return  data;
   };
