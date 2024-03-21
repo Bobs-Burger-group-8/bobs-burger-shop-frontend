@@ -1,0 +1,43 @@
+.orders {
+    background-color: #fff;
+    color: #000;
+    margin: 1rem;
+    list-style: none;
+}
+
+.order {
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #000;
+}
+
+.item-prices {
+    display: flex;
+}
+
+.item-prices p {
+    margin: 1rem;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 1rem;
+}
+
+.completed {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 1.5rem;
+}
+
+.completed input {
+    width: 20px;
+}

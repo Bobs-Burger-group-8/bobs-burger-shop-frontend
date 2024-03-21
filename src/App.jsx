@@ -13,6 +13,7 @@ import Logout from './components/Logout/Logout.jsx';
 import { getFavouritesByUserId, removeFavourite, saveNewFavourite } from './services/FavouriteService.jsx';
 import ProductView from './views/ProductView.jsx';
 import { getAllProducts } from './services/ProductService.jsx';
+import EditOrders from './components/EditOrders/EditOrders.jsx';
 
 const queryClient = new QueryClient();
 
@@ -24,14 +25,17 @@ const App = () => {
   const [favorites, setFavorites] = useState([])
   const [loggedIn, setLoggedIn] = useState(false)
   const [products, setProducts] = useState([])
+  const [admin, setAdmin] = useState(false)
   let userId = localStorage.getItem("userId")
-
 
  let cartFromLocal = localStorage.getItem('cart');
   
   useEffect(() => {
     if(localStorage.getItem("userId") !== null && loggedIn==false) {
       setLoggedIn(true)
+    }
+    if(localStorage.getItem("role") === "0") {
+      setAdmin(true)
     }
     if(cart[0] == undefined && cartFromLocal!==null){
       setCart(JSON.parse(localStorage.getItem('cart')))
@@ -112,11 +116,12 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
     <AppCtx.Provider value={{cart:cart, updateCart:updateCart, favorites, onToggleFavorite:toggleFavorite, emptyCart:emptyCart, products:products, allFavs:favorites, setProducts:setProducts}}>
-      <LoggedInCtx.Provider value={{loggedIn: loggedIn, setLoggedIn: setLoggedIn}}>
+      <LoggedInCtx.Provider value={{loggedIn: loggedIn, setLoggedIn: setLoggedIn, admin: admin, setAdmin: setAdmin}}>
     <Router>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} /> 
+          <Route path="/editorders" element={<EditOrders />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<RegisterForm />} />

@@ -6,7 +6,7 @@ import { LoggedInCtx } from '../../App';
 import './LoginForm.css';
 
 function LoginForm() {
-    const {loggedIn, setLoggedIn} = useContext(LoggedInCtx)
+    const {setLoggedIn, setAdmin} = useContext(LoggedInCtx)
     const [form, setForm] = useState({
         email: "", 
         password: "",
@@ -32,6 +32,10 @@ function LoginForm() {
           const response = await axios.post('https://localhost:7141/auth/login', authUser)
           localStorage.setItem("token", response.data.token)
           localStorage.setItem("userId", response.data.id)
+          localStorage.setItem("role", response.data.role)
+          if (response.data.role == 0) {
+            setAdmin(true)
+          }
           setLoggedIn(true)
           navigate("/")
       } catch(e) {

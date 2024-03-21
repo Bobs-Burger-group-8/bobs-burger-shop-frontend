@@ -7,12 +7,14 @@ import Counter from '../Cart/Counter';
 import { LoggedInCtx } from '../../App';
 
 function Navbar() {
-  const {loggedIn, setLoggedIn} = useContext(LoggedInCtx)
+  const {loggedIn, setLoggedIn, admin, setAdmin} = useContext(LoggedInCtx)
   const navigate = useNavigate()
 
   function logout() {
     localStorage.removeItem("token")
     localStorage.removeItem("userId")
+    localStorage.removeItem("role")
+    setAdmin(false)
     setLoggedIn(false)
     navigate("/")
   }
@@ -33,6 +35,11 @@ function Navbar() {
         <li onClick={logout}>
           <Link to="/logout">Logout</Link>
         </li>
+        }
+        {admin &&
+          <li>
+            <Link to="/editorders">Approve Orders</Link>
+          </li>
         }
         {loggedIn ?
         <li>

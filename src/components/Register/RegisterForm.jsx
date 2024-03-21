@@ -13,6 +13,7 @@ function RegisterForm() {
         phone: "",
         street: "", 
         city: "", 
+        role: 1
         })
     const navigate = useNavigate();
 
@@ -30,7 +31,7 @@ function RegisterForm() {
           return;
         }
 
-        const authUser = {email: form.email, password: form.password, FirstName: form.firstName, LastName: form.lastName, Street: form.street, City: form.city, Phone: form.phone}
+        const authUser = {email: form.email, password: form.password, FirstName: form.firstName, LastName: form.lastName, Street: form.street, City: form.city, Phone: form.phone, Role: form.role}
         try {
             await axios.post('https://localhost:7141/auth/register', authUser)
             navigate("/registerd")
