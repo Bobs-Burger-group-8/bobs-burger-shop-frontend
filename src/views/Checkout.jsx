@@ -11,6 +11,7 @@ import '../components/Cart/Cart.css'
 
 export default function Checkout() {
     const [showReceipt, setShowReceipt] = useState(false);
+    const [refresh, setRefresh] = useState(false)
     let ctx = useContext(AppCtx)
 
     const toggleReceipt = async () => {
@@ -56,9 +57,9 @@ export default function Checkout() {
                         <br></br>
                         <h2>Did you forget something?</h2>
                         <div className="product-list-container">
-                        <CardList products={ctx.products.filter(item=>item.category=="drink")}/>
+                        <CardList products={ctx.products.filter(item=>item.category=="drink")} updateCart={setRefresh(true)}/>
                         
-                            
+5
                         </div>
                     </>
                 )}
