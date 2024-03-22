@@ -13,8 +13,8 @@ export default function Total(){
     
     }
 
-    console.log(sum)
-    return(  
+    return(
+        
       <div className="total-section">
           <h4>Total: £<input className="total" type="number" value={sum.toFixed(2)||0.00} disabled/></h4>
       </div>

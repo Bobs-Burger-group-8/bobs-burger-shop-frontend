@@ -29,10 +29,7 @@ function handleClick(){
 
 function updateFavs(){
    ctx.onToggleFavorite(product)
-   if(item=='black'){ setColor('red')
-  }else if(heartColor=='red'){
-    setColor('black')
-  }
+
 }
 
 
@@ -47,8 +44,9 @@ function updateFavs(){
           </button>
           <hr />
         </div>
+        <h3>£{product.price}</h3>
         <p className="card-description">{product.description}</p>
-        <button className='add-to-cart' onClick={handleClick}>Add to cart</button>
+       <button className='add-to-cart' onClick={handleClick}>Add to cart</button>
       </div>
     </div>
   );

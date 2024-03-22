@@ -30,7 +30,8 @@ function EditOrders() {
     }
 
   return (
-    <EditOrderList orders={orders} products={products} />
+    <><div className='container-orders'><h1>Approve Orders (Admin)</h1>
+    <EditOrderList orders={orders} products={products} /></div></>
   )
 }
 

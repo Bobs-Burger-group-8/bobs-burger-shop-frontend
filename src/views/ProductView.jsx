@@ -4,6 +4,9 @@ import { AppCtx } from "../App";
 import { getProduct, getProductIngredients } from "../services/ProductService";
 import { FaHeart } from "react-icons/fa";
 import Ingredients from '../components/Ingredient'
+import "../components/Cards/Cards.css";
+import Home from "./Home";
+import "../App.css"
 
 export default function ProductView(){
     const[product, setProduct] = useState(false)
@@ -12,20 +15,28 @@ export default function ProductView(){
     let ctx = useContext(AppCtx)
     
     if(product==false){
-        let item = ctx.products.find(item=> item.id.toString()==id.toString())
-       if(item !== undefined){
-        setProduct(item);
-        
-        }
-
+        getProduct()
     }    
+
+    
     useEffect(()=>{
-        
+        getProduct()
+        if( product.category!='drink'){
+         getIngredients()}
+    },[id]) 
+
+    useEffect(()=>{
         if( product.category!='drink'){
          getIngredients()}
     },[product]) 
 
-    
+    function getProduct(){
+        let item = ctx.products.find(item=> item.id.toString()==id.toString())
+        if(item !== undefined){
+         setProduct(item);
+         
+         }
+    }
 
     async function getIngredients(){
        let response =  await getProductIngredients(id)
@@ -48,20 +59,28 @@ export default function ProductView(){
       }
   
     return(<>
-        <div className="card" style={{maxHeight:'200px'}}>
-       <div className="card-content">
-       <h2 className="cart-title" style={{paddingLeft:'20px'}} >{product.name}</h2>
-        <button className='add-to-cart' onClick={handleClick}>Add to cart</button><p className="card-description">{product.description}</p></div>
+   <h2 className="cart-title" style={{paddingLeft:'20px'}} >{product.name}</h2>
+        <div className="container" style={{minWidth:'50vw', paddingLeft:'2rem'}}>
         <div>
-          <img className="card-image" src={product.image} alt={product.name} />
-          <button className="favorite-button" onClick={() => ctx.onToggleFavorite(product)}>
-           <FaHeart/>
-          </button>
-          <hr />
+        <img className="card-image" src={product.image} alt={product.name} />
+        </div>
+       <div style={{paddingRight:'20px', paddingLeft:'20px'}}><h2>£{product.price}</h2><h3>Descrition</h3><p className="card-description">{product.description}</p><br></br><button className='add-to-cart' onClick={handleClick}>Add to cart</button></div>
+       <div style={{minWidth:'2rem'}}>
         </div>
         <Ingredients ingredients={ingredients}/>
+        </div>
+      
+        <div>
         
-      </div>
+         
+          <button className="favorite-button" onClick={() => ctx.onToggleFavorite(product)}>
+          <FaHeart style={{color: "black"}} />
+          </button>
+          
+          <hr />
+       
+        </div>
+      <Home/>
         
         </>
     )

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react'
+import './EditOrders.css'
 
 const BASE_API_URL = 'https://localhost:7141/orders/';
 
@@ -15,7 +16,7 @@ function EditOrderListItem({ order, index, products }) {
 
   return (
     <li className='order'>
-    <h3>Order number: {index+1}</h3>
+    <h2>Order number: {index+1}</h2>
     {order.products.reverse().map((product, j) => (
         <div key={j} className='item'>
             <p>{products.find(prod => prod.id === product.productId).name}</p>
