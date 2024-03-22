@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react'
+import './EditOrders.css'
 
 const BASE_API_URL = 'https://localhost:7141/orders/';
 

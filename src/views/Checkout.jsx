@@ -4,6 +4,10 @@ import CartItemList from '../components/Cart/CartItemList';
 import Total from '../components/Cart/Total';
 import { AppCtx } from '../App';
 import { addOrder } from '../services/OrderService';
+import Favourites from './Favourites';
+import CardList from '../components/Cards/CardList';
+import '../App.css'
+import '../components/Cart/Cart.css'
 
 export default function Checkout() {
     const [showReceipt, setShowReceipt] = useState(false);
@@ -49,6 +53,13 @@ export default function Checkout() {
                         <div className='checkout-btn-container'>
                             <button onClick={toggleReceipt} className='place-order-btn'>Place Order</button>
                             <button onClick={ctx.emptyCart} className='empty-checkout-btn'>Empty cart</button>
+                        </div>
+                        <br></br>
+                        <h2>Did you forget something?</h2>
+                        <div className="product-list-container">
+                        <CardList products={ctx.products.filter(item=>item.category=="drink")}/>
+                        
+                            
                         </div>
                     </>
                 )}

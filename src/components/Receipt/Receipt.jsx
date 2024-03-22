@@ -1,7 +1,6 @@
-import React from 'react'
 import './Receipt.css'
 import ReceiptItemList from './ReceiptItemList'
-import Total from '../Cart/Total'
+import ReceiptTotal from './Total'
 
 export default function Receipt() {
   return (
@@ -18,7 +17,7 @@ export default function Receipt() {
             </div>
             <h3>Your total:</h3>
             <div className='receipt-total'>
-                <Total></Total>
+                <ReceiptTotal/>
             </div>
         </div>
     </div>

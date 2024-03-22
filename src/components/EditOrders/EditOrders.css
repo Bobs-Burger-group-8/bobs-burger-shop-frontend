@@ -3,13 +3,18 @@
     color: #000;
     margin: 1rem;
     list-style: none;
+   
 }
 
 .order {
-    margin: 1rem;
+   
     display: flex;
+    margin-bottom: 1rem;
     justify-content: center;
     flex-direction: column;
+    border: #000 solid 1px ;
+    padding: 0.5rem;
+    max-width: 60vw;
     border-bottom: 3px solid #000;
 }
 
@@ -41,4 +46,8 @@
 
 .completed input {
     width: 20px;
+}
+
+.container-orders{
+    margin: 1rem;
 }

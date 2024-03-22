@@ -50,7 +50,7 @@ function ProductFilter({ setFilteredProducts, products }) {
         <button onClick={() => handleCategoryChange('all')}>All</button>
         <button onClick={() => handleCategoryChange('burger')}>Burger</button>
         <button onClick={() => handleCategoryChange('drink')}>Drink</button>
-      <input
+      <input style={{borderRadius:'5px'}}
         type="text"
         placeholder="Search by name or category"
         value={searchQuery}
