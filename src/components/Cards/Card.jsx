@@ -29,6 +29,7 @@ function handleClick(){
 
 function updateFavs(){
    ctx.onToggleFavorite(product)
+   refreshCart(product)
 
 }
 
@@ -39,7 +40,7 @@ function updateFavs(){
         <Link to={`/products/${product.id}`}><h2 className="card-title" style={{color:'black'}}>{product.name? product.name:'missing name'}</h2></Link>
         <div className="card-image-container">
           <img className="card-image" src={product.image} alt={product.name} />
-          <button className="favorite-button" onClick={() => updateFavs()}>
+          <button className="favorite-button" onClick={updateFavs}>
             <FaHeart style={{color: heartColor}} />
           </button>
           <hr />
