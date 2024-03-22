@@ -57,7 +57,7 @@ export default function Checkout() {
                         <br></br>
                         <h2>Did you forget something?</h2>
                         <div className="product-list-container">
-                        <CardList products={ctx.products.filter(item=>item.category=="drink")} updateCart={setRefresh(true)}/>
+                        <CardList products={ctx.products.filter(item=>item.category=="drink")} updateCart={()=>setRefresh(true)}/>
                         
 5
                         </div>
