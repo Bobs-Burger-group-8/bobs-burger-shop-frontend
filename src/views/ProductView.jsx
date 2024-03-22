@@ -11,6 +11,7 @@ import "../App.css"
 export default function ProductView(){
     const[product, setProduct] = useState(false)
     const [ingredients, setIngredients] = useState([])
+    const [favs, refreshFavs] = useState([])
     let {id} = useParams();
     let ctx = useContext(AppCtx)
     
@@ -77,7 +78,7 @@ export default function ProductView(){
           <hr />
        
         </div>
-      <Home/>
+      <Home updatefavs={(id)=>refreshFavs(id)}/>
         
         </>
     )

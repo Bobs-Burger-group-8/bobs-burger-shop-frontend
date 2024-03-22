@@ -18,7 +18,7 @@ function Favourites({updateCart}) {
        allFavs.splice(index,1)
   
     }
-    setFavProducts(arr)
+setFavProducts(arr)
   
   },[ctx.allFavs])
   return (<>

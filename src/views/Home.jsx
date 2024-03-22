@@ -8,7 +8,7 @@ import Favourites from './Favourites';
 import ProductFilter from '../components/ProductFilter/ProductFilter';
 import Total from '../components/Cart/Total';
 
-function Home() {
+function Home({updatefavs}) {
   const [cart, setCart] = useState([]);
   const {loggedIn} = useContext(LoggedInCtx)
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -22,6 +22,13 @@ function Home() {
   const filterProducts = () => {
     setFilteredProducts(ctx.products);
   };
+
+  function refresh(item){
+    
+      console.log(window.location.href)
+    
+     setCart([...cart, item])
+  }
 
   return (
     <div className="home">
@@ -41,7 +48,7 @@ function Home() {
       </div>
       <div className="favorites-container">
         {loggedIn && 
-        <Favourites updateCart={(item)=> setCart([...cart, item])} />
+        <Favourites updateCart={(item)=> refresh(item)} />
         }
       </div>
     </div>
