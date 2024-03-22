@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { AppCtx } from "../App";
-import { getProduct, getProductIngredients } from "../services/ProductService";
+import {getProductIngredients } from "../services/ProductService";
 import { FaHeart } from "react-icons/fa";
 import Ingredients from '../components/Ingredient'
 import "../components/Cards/Cards.css";
@@ -55,6 +55,8 @@ export default function ProductView(){
            updateArray.push(product)
         }
         ctx.updateCart(updateArray);
+        setProduct(product)
+        
         alert('Product was successfully added to cart')
       }
   
@@ -64,18 +66,13 @@ export default function ProductView(){
         <div>
         <img className="card-image" src={product.image} alt={product.name} />
         </div>
-       <div style={{paddingRight:'20px', paddingLeft:'20px'}}><h2>£{product.price}</h2><h3>Descrition</h3><p className="card-description">{product.description}</p><br></br><button className='add-to-cart' onClick={handleClick}>Add to cart</button></div>
+       <div style={{paddingRight:'20px', paddingLeft:'20px'}}><h2>£{product.price}</h2><h3>Description</h3><p className="card-description">{product.description}</p><br></br></div>
        <div style={{minWidth:'2rem'}}>
         </div>
         <Ingredients ingredients={ingredients}/>
         </div>
       
         <div>
-        
-         
-          <button className="favorite-button" onClick={() => ctx.onToggleFavorite(product)}>
-          <FaHeart style={{color: "black"}} />
-          </button>
           
           <hr />
        
