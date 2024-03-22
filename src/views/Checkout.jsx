@@ -45,7 +45,6 @@ export default function Checkout() {
                 {!showReceipt && (
                     <>
                         <CartItemList />
-                        <Total />
                         <div className='checkout-btn-container'>
                             <button onClick={toggleReceipt} className='place-order-btn'>Place Order</button>
                             <button onClick={ctx.emptyCart} className='empty-checkout-btn'>Empty cart</button>

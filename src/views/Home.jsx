@@ -14,12 +14,9 @@ function Home() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const ctx = useContext(AppCtx);
 
-
   useEffect(() => {
     filterProducts();
   }, [ctx.products]);
-
-
 
   // Update list on filter based on context
   const filterProducts = () => {
@@ -35,18 +32,15 @@ function Home() {
           <CardList products={filteredProducts} updateCart={(item) => setCart([...cart, item])} />
         </div>
         <div className='cart-container'>
-          <CartItemList cart={cart} /><Total/>
-          
-          
-            <div className='checkout-btn-container'>
-              <button onClick={ctx.emptyCart} className='empty-cart-btn'>Empty cart</button>
-              <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
+          <CartItemList cart={cart} />
+          <div className='checkout-btn-container'>
+            <button onClick={ctx.emptyCart} className='empty-cart-btn'>Empty cart</button>
+            <li className='checkout-btn'><Link to="/checkout">Checkout</Link></li>
           </div>
-          </div>
-        
-          </div>
+        </div> 
+      </div>
       <div className="favorites-container">
-        {loggedIn &&
+        {loggedIn && 
         <Favourites updateCart={(item)=> setCart([...cart, item])} />
         }
       </div>

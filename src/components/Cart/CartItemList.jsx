@@ -1,6 +1,7 @@
 import CartItem from "./CartItem"
 import { AppCtx } from "../../App"
 import { useContext } from "react"
+import Total from "./Total"
 
 export default function CartItemList({refreshPage}){
  
@@ -11,6 +12,7 @@ const ctx = useContext(AppCtx)
                 { ctx.cart.map((item, index)=>(<CartItem key={index} id={item.id} item={item} refreshPage={refreshPage}/>))
                 }
             </ul>
+            <Total></Total>
         </div>
     )
 } 

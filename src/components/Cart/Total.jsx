@@ -14,19 +14,9 @@ export default function Total(){
     }
 
     console.log(sum)
-    return(
-        
+    return(  
       <div className="total-section">
-      <div>
-        <h3>Total</h3>
-        <hr />
+          <h4>Total: £<input className="total" type="number" value={sum.toFixed(2)||0.00} disabled/></h4>
       </div>
-
-      <div>
-        £<input className="total" type="number" value={sum.toFixed(2)||0.00} disabled/>
-      </div>
-      <hr />
-      
-    </div>
     )
 }

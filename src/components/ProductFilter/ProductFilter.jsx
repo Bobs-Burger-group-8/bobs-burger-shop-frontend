@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './ProductFilter.css';
 
 function ProductFilter({ setFilteredProducts, products }) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -51,8 +52,9 @@ function ProductFilter({ setFilteredProducts, products }) {
         <button onClick={() => handleCategoryChange('burger')}>Burger</button>
         <button onClick={() => handleCategoryChange('drink')}>Drink</button>
       <input
+        className='search-box'
         type="text"
-        placeholder="Search by name or category"
+        placeholder="Search by name or category .."
         value={searchQuery}
         onChange={e => setSearchQuery(e.target.value)}
       />

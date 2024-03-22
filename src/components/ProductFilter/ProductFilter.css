@@ -1,0 +1,15 @@
+.filter-container button{
+    margin: 10px;
+    transition: 0.4s ease;
+}
+
+.filter-container button:hover{
+    transform: scale(1.03);
+    background-color: rgb(42, 124, 165);
+    color: #FFFFFF;
+}
+
+.search-box{
+    padding: 0.7rem 2.5rem;
+    border-radius: 10px;
+}
